@@ -10,9 +10,8 @@ class User_model extends CI_Model
 	{		
 		$rs = $this->db->get_where('tb_user',array('EMAIL'=>$signin['email'],'PASSWORD'=>$signin['pwd']));
 		
-		if ($rs->num_rows() > 0){
-			
-			$data = true;
+		if ($rs->num_rows() > 0){			
+			$data['login'] = $rs->result_array();
 			return $data;
 		}else{
 			$data = false;

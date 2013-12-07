@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/zatanzoneme';
+$config['base_url']	= 'http://localhost/soss';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'q0231sz!!1@asd';
+$config['encryption_key'] = 'soss';
 
 /*
 |--------------------------------------------------------------------------

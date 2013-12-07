@@ -1,5 +1,7 @@
 <?php
 class Form extends CI_Controller {
+	
+	
 
 	function index()
 	{
@@ -31,7 +33,11 @@ class Form extends CI_Controller {
 			$data = $this->User_model->checkSignIn($signin);
 			
 			if ($data) {
-				redirect('/main');
+				
+// 				print_r($data['login']);
+				$this->Sess->setsession($data['login']);
+				
+				redirect('/main','refesh');
 			}else{
 				$this->load->view('manuindex');
 				$this->load->view('form/signin');

@@ -207,9 +207,9 @@
 			<div><img src="<?php echo base_url();?>images/i2User.png" width="180" height="180" border="0" alt=""></div>
 			<hr />
 			<div class="panel">
-				<h6>Name : User01</h6>
-				<p>Elephant@hotmail.com</p>
-				<p><a href="#" class="small alert button">Sign Out</a></p>
+				<h6><?php echo $this->session->userdata('user_name');?></h6>
+				<p><?php echo $this->session->userdata('user_email');?></p>
+				<p><a href="session/signout" class="small alert button">Sign Out</a></p>
 				<hr />
 				<h6><a href="newproject.html" id="" name="">New Project</a></h6>
 				<h6><a href="notifications.html" id="" name="">Notifications</a></h6>
