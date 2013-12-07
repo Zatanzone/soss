@@ -1,0 +1,55 @@
+/* ===========  HEADER  ============ */
+
+.adminheader{
+	height: 40px;
+	background-color: #101010;
+}
+
+
+/* ============  TAB  ==============*/
+.content {
+   clear: both;
+   border: #000000 1px solid;
+   background-color: #b5b5b5;
+   width: 1348px;
+   height: auto;
+}
+.ulnofloat {
+   list-style-type: none;
+   padding-left: 0px;
+   margin: 0px;
+}
+.ullifloat {
+   float : left;
+   padding-left: opx;
+   border-right:  #000000 1px solid;
+   background-color: #000000;
+   margin-right: 0px;
+}
+.ula {
+   position: relative;
+   text-decoration: none;
+   display: block;
+   padding: 5px 10px;
+   cursor: pointer;
+   font: bold 11px arial, sans-serif;
+   color: rgb(255, 255, 255);
+}
+#tabco4{
+   position: relative;
+   /*left : 203px;*/
+   width: 1348px;
+   background-color: #000000;
+   border-right: #000000 2px solid;
+}
+#tabco4 ul a:hover {
+   color: #000000;
+}
+
+.tableuser{
+margin-left: 220px;
+margin-top: 20px;
+margin-bottom: 20px;
+border: 1px solid;
+	
+}
