@@ -85,7 +85,7 @@
 				</div>
 		 		<center>
 						<a href="form/signin" class="button" style="width: 245px;" >Sign In</a>
-						<a href="#" class="button success" style="width: 245px;">Create your account</a>
+						<a href="form/signup" class="button success" style="width: 245px;">Create your account</a>
 				</center>  
 			</div>
 			<hr />
