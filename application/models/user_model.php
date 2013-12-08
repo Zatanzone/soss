@@ -19,5 +19,11 @@ class User_model extends CI_Model
 		}
 	
 	}
+	
+	public function register($data){
+		print_r($data);
+		echo "WOJJ";
+		exit();
+	}
 }
 ?>

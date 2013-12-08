@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width">
 <title>SOSadministration</title>
 
-<link rel="stylesheet" href="../css/admincss.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/admincss.css">
 <link rel="shortcut icon" href="images/soss.ico" />
 
 </head>

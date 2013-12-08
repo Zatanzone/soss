@@ -53,8 +53,9 @@ class Form extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('password', 'Password', 'required');
-		
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('avatar', 'Avatar', 'emtry');
 		
 		
 		if ($this->form_validation->run() == FALSE)
@@ -64,8 +65,14 @@ class Form extends CI_Controller {
 		}
 		else
 		{
-			echo "Sign In Success!!";
-			//$this->load->view('index/formsuccess');
+			$regis['email']=$this->input->post('email');
+			$regis['password']=$this->input->post('password');
+			$regis['name']=$this->input->post('name');
+			$regis['phone']=$this->input->post('phone');
+			$regis['avatar']=$this->input->post('avatar');
+			
+			$result = $this->User_model->register($regis);
+		
 		}
 	}
 	

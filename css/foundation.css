@@ -84,12 +84,20 @@
 	}
 	
 .signup-box {
-  border: 2px solid grey;
+  box-shadow: 5px 5px 10px #a2a2a2;
   position: absolute !important;
   background-color:white;
   border-radius:5px;
-  top:45px;
+  top:85px;
+  left: 345px;
 }
+
+	.signup-box  .left{
+	margin-left: 20px;
+	
+	}
+
+
 .search-box {
   position: absolute;
   left: 200px;
