@@ -204,7 +204,7 @@
 	<!-- Side Profile -->
 		<div class="large-3 columns hide-for-small">
 	
-			<div><img src="<?php echo base_url();?>images/i2User.png" width="180" height="180" border="0" alt=""></div>
+			<div><img src="<?php echo base_url();?>/images/pic_profile/<?php echo $this->session->userdata('user_avatar');?>" width="220" height="180" border="0" alt=""></div>
 			<hr />
 			<div class="panel">
 				<h6><?php echo $this->session->userdata('user_name');?></h6>

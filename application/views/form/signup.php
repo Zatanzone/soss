@@ -1,7 +1,7 @@
 <center>
 	<div class="signup-box">
 		<h1>Sign Up</h1>
-<?php echo form_open('form/signup'); ?>
+<?php echo form_open_multipart('form/signup'); ?>
 
 <div class="left">
 			<div class="row">
