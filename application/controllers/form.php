@@ -69,8 +69,22 @@ class Form extends CI_Controller {
 			$regis['password']=$this->input->post('password');
 			$regis['name']=$this->input->post('name');
 			$regis['phone']=$this->input->post('phone');
-			$regis['avatar']=$this->input->post('avatar');
 			
+			$config['upload_path']="images/pic_profile/";
+			$config['allowed_types']="jpg|gif|png"; //set type of file that can be upload
+			$config['max_size']= 1024; // kb
+			$config['max_height']= 1024; //pixel
+			$config['max_width']= 1024; //pixel
+			$this->load->library("upload",$config);
+			
+			
+			if ($this->upload->do_upload("avatar")) { // ถ้าอัพโหลดได้
+				$data=$this->upload->data();
+				$regis['avatar'] = $data['file_name'];
+			}else{
+				echo  $this->upload->display_errors();
+			}
+
 			$result = $this->User_model->register($regis);
 		
 		}

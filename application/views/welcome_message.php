@@ -16,7 +16,7 @@
 			<img alt="welcome" src="/zatanzone/images/community_image_1384364417.jpg">
 		</div>
 		<div>
-			<p class="weltitle">Zatan Zone</p>
+
 		</div>
 	</div>
 

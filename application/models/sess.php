@@ -16,13 +16,15 @@ class Sess extends CI_Model
 			$user_name=$r['NAME'];
 			$user_email=$r['EMAIL'];
 			$user_phone=$r['PHONE'];
+			$user_avatar=$r['IMG'];
 		}
 
 		$ar=array(
 				'user_id'=>$user_id,
 				'user_name'=>$user_name,
 				'user_email'=>$user_email,
-				'user_phone'=>$user_phone
+				'user_phone'=>$user_phone,
+				'user_avatar'=>$user_avatar
 		);
 		$this->session->set_userdata($ar);
 	}

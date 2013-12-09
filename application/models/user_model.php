@@ -21,8 +21,23 @@ class User_model extends CI_Model
 	}
 	
 	public function register($data){
-		print_r($data);
-		echo "WOJJ";
+
+		$insert = array(
+			'EMAIL' => $data['email'],
+			'NAME' => $data['name'],
+			'PASSWORD' => $data['password'],
+			'PHONE'=>$data['phone'],
+			'IMG'=>$data['avatar']
+		);
+		
+		$this->db->insert('tb_user',$insert);
+		
+		$rs = $this->db->get_where('tb_user',array('EMAIL'=>$data['email'],'PASSWORD'=>$data['password']));
+		if ($rs->num_rows() > 0){
+			$data['login'] = $rs->result_array();
+			$this->Sess->setsession($data['login']);
+		}
+		redirect('main','refesh');
 		exit();
 	}
 }
