@@ -7,7 +7,7 @@ class Createproject extends CI_Controller {
 
 	public function index()
 	{
-
+		$this->load->view('manuindex');
 		$this->load->view('form/createproject');
 	}
 }
