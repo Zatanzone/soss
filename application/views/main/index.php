@@ -63,7 +63,7 @@
 	<!-- main Content -->
 	<div class="row">
 		<div class="large-8 columns">
-			<p><a href="#" class="button" onclick="showNewproject()">Create New Project</a></p>
+			<p><a href="createproject/index" class="button" ">Create New Project</a></p>
 			<!-- New Project Box-->
 			<div id="newproject"  style="display:none;" class="" >
 				<div class="panel">
@@ -98,21 +98,36 @@
 			<table>
 				<thead><tr><th>List</th><th>Project Name</th><th>Duration</th></tr></thead>
 				<tbody>
-				<tr>
-					<td><a href="projectroom.html">1</td>
-					<td><a href="projectroom.html">Project A</td>
-					<td><a href="projectroom.html">4 Months</td>
-				</tr>
-				<tr class="alt">
-					<td>2</td>
-					<td>Project B</td>
-					<td>1 year</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Project C</td>
-					<td>6 Months</td>
-				</tr>
+				<?php
+				if (count ( $myProject ) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
+					echo "<tr><td colspan = '4' align='center'> -- no data --</td></tr>";
+					} else {
+				$no = 1;
+				foreach ( $myProject as $mp ) {
+					echo "<tr>";
+					echo "<td align='center'>$no</td>";
+					echo "<td>" . $mp ['PROJECT'] . "</td>";
+					$duration =  $mp ['ENDDATE'] - $mp['STARTDATE'];
+					echo "<td>" .$duration . "</td>";
+					$no++;
+				}
+			}
+			 ?>
+<!-- 				<tr> -->
+<!-- 					<td><a href="projectroom.html">1</td> -->
+<!-- 					<td><a href="projectroom.html">Project A</td> -->
+<!-- 					<td><a href="projectroom.html">4 Months</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr class="alt"> -->
+<!-- 					<td>2</td> -->
+<!-- 					<td>Project B</td> -->
+<!-- 					<td>1 year</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td>3</td> -->
+<!-- 					<td>Project C</td> -->
+<!-- 					<td>6 Months</td> -->
+<!-- 				</tr> -->
 			
 				</tbody>
 				</table>

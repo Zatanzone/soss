@@ -3,4 +3,3 @@ RewriteCond $1 !^(index\.php|captcha|watch|review|ondemand|search|images|images_
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1
-http://index.php/$1
