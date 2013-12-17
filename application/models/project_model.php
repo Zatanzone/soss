@@ -12,6 +12,13 @@ class Project_model extends CI_Model
 		$data['myProject'] = $query->result_array();
 		return $data;
 	}
+	
+	public function  getProject($pid){
+		
+		$query = $this->db->get_where('tb_project', array('pid' => $pid));
+		$data = $query->result_array();
+		return $data;
+	}
 
 	public function create($data){
 		
