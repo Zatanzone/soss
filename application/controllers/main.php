@@ -11,7 +11,11 @@ class Main extends CI_Controller {
 		if ($this->session->userdata('user_id')==null) {
 			redirect('form/signin','refesh');
 		}else{
-		$this->load->view('main/index');
+		$this->load->model('Project_model');
+		$uid = $this->session->userdata('user_id');
+		$project = $this->Project_model->getListMyProject($uid);
+		$this->load->view('main/index',$project);
+		$this->load->view('projectside',$project);
 		}
 	}
 }

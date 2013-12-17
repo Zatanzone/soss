@@ -77,6 +77,7 @@
 			echo "<td>" . anchor ( "admin/edit/" . $r ['UID'], "แก้ไข" ) . "</td>";
 			echo "<td>" . anchor ( "admin/del/" . $r ['UID'], "ลบ" ) . "</td>";
 			echo "</tr>";
+			$no++;
 		}
 	}
 	?>
