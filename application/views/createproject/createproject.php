@@ -25,15 +25,19 @@
 			<p>From Date : </p>				
 		</div>
 		<div class="large-3 columns">
+			
 			<input type="text" id=startdate name="startdate" />
 			<?php echo  form_error('startdate','<font color="error">');?>
+		
 		</div>
 		<div class="large-1 columns">
 			<p>to</p>
 		</div>
 		<div class="large-3 columns">
+			
 			<input type="text" id="enddate" name="enddate" />
 			<?php echo  form_error('enddate','<font color="error">');?>
+			
 		</div>	
 		
         <!--date checker javascript-->
@@ -43,15 +47,22 @@
         <script>
         	$dateformat = "yy-mm-dd";
         	$animated = "blind";
+
         	$(document).ready(function(){
     			$("#startdate").datepicker({
+    			  	showOn: "button",
+          	      	buttonImage: "<?php echo base_url();?>images/calendar.gif",
+          	      	buttonImageOnly: true,
        			 	numberOfMonths: 1,
-        		 	onSelect: function(selected) {  	
-            		$("#startdate").datepicker( "option", "dateFormat", $dateformat );        		 	            		 	
+        		 	onSelect: function(selected){ 
+            		$("#startdate").datepicker( "option", "dateFormat", $dateformat );    		 	            		 	
 	         		$("#enddate").datepicker("option","minDate",  selected);		
         		}
     		});
     			$("#enddate").datepicker({
+    				showOn: "button",
+          	      	buttonImage: "<?php echo base_url();?>images/calendar.gif",
+          	      	buttonImageOnly: true,
        				numberOfMonths: 1,
        				onSelect: function(selected) {
            			$("#enddate").datepicker( "option", "dateFormat", $dateformat );	
