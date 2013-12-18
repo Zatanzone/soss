@@ -17,15 +17,15 @@
       <ul>
         <li class="name">
           <h1>
-            <a href="index.html"><img src="../images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+            <a href="index.php"><img src="../images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
           </h1>
         </li>
       </ul>
       <ul class="Menu-top hide-for-small">
-            <a href="index.html">HOME</a>
-  			<a href="guide.html">GUIDE</a>
-            <a href="knowledge.html">KNOWLEDGE</a>
-  			<a href="contactus.html">CONTACT</a>
+            <a href="index.php">HOME</a>
+  			<a href="guide.php">GUIDE</a>
+            <a href="knowledge.php">KNOWLEDGE</a>
+  			<a href="contactus.php">CONTACT</a>
       </ul>     
 	  <a href="#" class="button small" onclick="showSignin()">Sign in</a>	
 	 </nav>

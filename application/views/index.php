@@ -1,3 +1,5 @@
+
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
@@ -14,7 +16,7 @@
 		<ul>
 			<li class="name">
 				<h1>
-					<a href="index.html"><img src="images/sos_logo_tran.png"
+					<a href="index"><img src="images/sos_logo_tran.png"
 						width="100%" height="40" border="0" alt=""></a>
 				</h1>
 			</li>
@@ -200,20 +202,16 @@
 		<!-- Side Bar -->
 		<div class="large-4 columns">
 			<h4>Getting Started</h4>
-			<p>We're stoked you want to try Foundation! To get going, this file
-				(index.html) includes some basic styles you can modify, play around
-				with, or totally destroy to get going.</p>
+			<p>1.Create your account</p>
+			<p>2.Learn and guide</p>
+			<p>3.Create project and Enjoy</p>
 
 			<h4>Other Resources</h4>
-			<p>Once you've exhausted the fun in this document, you should check
-				out:</p>
+			<p>The system will display well on IE10.0 , Chrome and firefox</p>
 			<ul class="disc">
-				<li><a href="http://foundation.zurb.com/docs">Foundation
-						Documentation</a><br />Everything you need to know about using the
-					framework.</li>
-				<li><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest
-					code, issue reports, feature requests and more.</li>
-				<li><a href="http://twitter.com/foundationzurb">@foundationzurb</a><br />Ping
+				<li><a href="">SOSS Demo version</a><br />We use CI-framework , Agile , githup , eclipse kepler and other..</li>
+				<li><a href="">Software Engineering</a><br />Project II , software engineering , Faculty of Technology and Environment , PSU Phuket </li>
+				<li><a href="">Trello</a><br />Ping
 					us on Twitter if you have questions. If you build something with
 					this we'd love to see it (and send you a totally boss sticker).</li>
 			</ul>
@@ -238,9 +236,8 @@
 						height="256" border="0" alt="">
 				</div>
 				<div class="panel">
-					<h4>
-						<p>Project Mangagement</p>
-					</h4>
+					<h4><p>Project Plan</p></h4>
+					<p>The project manager creates the project management plan following input from the project team and key stakeholders.</p>
 				</div>
 			</div>
 			<div class="large-4 columns">
@@ -249,9 +246,8 @@
 						border="0" alt="">
 				</div>
 				<div class="panel">
-					<h4>
-						<p>Team Mangagement</p>
-					</h4>
+					<h4><p>Team Member</p></h4>
+					<p>The process of working collaboratively with a group of people in order to achieve a goal.</p>
 				</div>
 			</div>
 			<div class="large-4 columns">
@@ -260,9 +256,8 @@
 						height="256" border="0" alt="">
 				</div>
 				<div class="panel">
-					<h4>
-						<p>Plan Mangagement</p>
-					</h4>
+					<h4><p>Document Plan</p></h4>
+					<p>Project Initiation Document provides a reference point throughout the project for both the customer and Team.</p>
 				</div>
 			</div>
 		</div>
@@ -279,11 +274,13 @@
 				<div>
 					<a>wor-enterprise.co,.Ltd</a>
 				</div>
-				<p>
-					United Arab Emirates<br> P.O.Box 13621, Ajman, UAE<br> Horizon
-					Towers, Block D, Office 1905-1906<br> Tel : 00971 6 7 313199<br>
-					Email : info@arabisknetwork.com<br> Latitude : 25.394028, 55.454385
-				</p>
+				<p>PSU Phuket, Thailand<br>
+                        Project Room<br>
+                        1101A-1102A, Office<br>
+                        Tel : +66 08 1990 48XX<br>
+                        Email : sossinfo@soss.com<br>
+                        80, Moo 1, Vichitsongkram Road,83120
+            </p>
 			</div>
 			<div class="large-4 columns social">
 				<div>
@@ -294,16 +291,16 @@
 
 				<span><a href="#" onmouseover="changeicon(f)"><img
 						src="images/icon-social/facebook-a.png" width="32" height="32"
-						border="0" alt=""></a></span> <span><a href="#"
-					onmouseover="changeicon(t)"><img
-						src="images/icon-social/twitter-a.png" width="32" height="32"
-						border="0" alt=""></a></span> <span><a href="#"
+						border="0" alt=""></a></span> 
+				<span><a href="#"
 					onmouseover="changeicon(s)"><img
 						src="images/icon-social/skype-a.png" width="32" height="32"
-						border="0" alt=""></a></span> <span><a href="#"
+						border="0" alt=""></a></span> 
+				<span><a href="#"
 					onmouseover="changeicon(g)"><img
 						src="images/icon-social/google-a.png" width="32" height="32"
-						border="0" alt=""></a></span> <span><a href="#"
+						border="0" alt=""></a></span> 
+				<span><a href="#"
 					onmouseover="changeicon(y)"><img
 						src="images/icon-social/youtube-a.png" width="32" height="32"
 						border="0" alt=""></a></span>
@@ -311,15 +308,15 @@
 			<div class="large-4 columns">
 				<a href="#">Software Operation Support System</a>
 				<hr />
-				<img src="images/logo_elephant.png" width="180" height="42"
-					border="0" alt="">
-				<p></p>
+				
 				<p>Email Address</p>
-				<input type="email" id="" name="" placeholder="Email Address">
+				<input type="email" id="txtemail" name="txtemail" placeholder="Email Address">
 				<p>Message</p>
-				<textarea rows="5" placeholder="Comment"></textarea>
+				<textarea rows="5" id="txtmessage" name="txtmessage" placeholder="Comment"></textarea>
+				
 				<input type="submit" value="submit">
-
+				
+				
 			</div>
 		</div>
 	</section>
@@ -327,11 +324,11 @@
 	<!-- Bottom bar -->
 	<nav class="top-bar">
 		<div class="row">
-			<center>
+			
 				<div class="Menu-bottom bottom-bar">
-					<a href="#">Privacy</a> | <a href="#">Term of use</a> | <a href="#">Sitemap</a>
+					<center><a href="#">Sitemap</a></center>
 				</div>
-			</center>
+			
 		</div>
 	</nav>
 	<!-- Bottom bar -->
