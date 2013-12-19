@@ -1,94 +1,84 @@
+<!-- sent mail -->
+<?php
+if($_POST){
+$to = "soss.phuket@gmail.com";
+$subject = "Contact mail";
+$message = $_POST['txtmessage'];
+$from = $_POST['txtemail'];
+$headers = "From:" . $from;
+mail($to,$subject,$message,$headers);
+}
+?>
+<!-- sent mail -->
 <!-- side botton -->
 	<section class="side-bottom">
-	<div class="row">
-		<div class="large-4 columns">	
-			<div><img src="../images/talk-us.png" width="200" height="64" border="0" alt=""></div>
-			<div><a>wor-enterprise.co,.Ltd</a></div>
-			<p>PSU Phuket, Thailand<br>
+		<div class="row">
+			<div class="large-4 columns">
+				<div>
+					<img src="images/talk-us.png" width="200" height="64" border="0"
+						alt="">
+				</div>
+				<div>
+					<a>wor-enterprise.co,.Ltd</a>
+				</div>
+				<p>PSU Phuket, Thailand<br>
                         Project Room<br>
                         1101A-1102A, Office<br>
                         Tel : +66 08 1990 48XX<br>
                         Email : sossinfo@soss.com<br>
                         80, Moo 1, Vichitsongkram Road,83120
             </p>
+			</div>
+			<div class="large-4 columns social">
+				<div>
+					<img src="images/social-us.png" width="200" height="64" border="0"
+						alt="">
+				</div>
+				<p>Stay connected to our social</p>
+
+				<span><a href="#" onmouseover="changeicon(f)"><img
+						src="images/icon-social/facebook-a.png" width="32" height="32"
+						border="0" alt=""></a></span> 
+				<span><a href="#"
+					onmouseover="changeicon(s)"><img
+						src="images/icon-social/skype-a.png" width="32" height="32"
+						border="0" alt=""></a></span> 
+				<span><a href="#"
+					onmouseover="changeicon(g)"><img
+						src="images/icon-social/google-a.png" width="32" height="32"
+						border="0" alt=""></a></span> 
+				<span><a href="#"
+					onmouseover="changeicon(y)"><img
+						src="images/icon-social/youtube-a.png" width="32" height="32"
+						border="0" alt=""></a></span>
+			</div>
+			<div class="large-4 columns">
+				<a href="#">Software Operation Support System</a>
+				<hr />
+									
+				<form method='POST' action=''>
+				<p>Email Address</p>
+				<input type="email" id="txtemail" name="txtemail" placeholder="Email Address">
+				<p>Message</p>
+				<textarea rows="5" id="txtmessage" name="txtmessage" placeholder="Comment"></textarea>
+				
+				<input type="submit" value="submit">
+				</form>
+				
+			</div>
 		</div>
-		<div class="large-4 columns social">	
-			<div><img src="../images/social-us.png" width="200" height="64" border="0" alt=""></div>
-			<p>Stay connected to our social</p>
-
-			<span><a href="#" onmouseover="changeicon(f)"><img src="../images/icon-social/facebook-a.png" width="32" height="32" border="0" alt=""></a></span>
-	
-			<span><a href="#" onmouseover="changeicon(t)"><img src="../images/icon-social/twitter-a.png" width="32" height="32" border="0" alt=""></a></span>
-
-			<span><a href="#" onmouseover="changeicon(s)"><img src="../images/icon-social/skype-a.png" width="32" height="32" border="0" alt=""></a></span>
-
-			<span><a href="#" onmouseover="changeicon(g)"><img src="../images/icon-social/google-a.png" width="32" height="32" border="0" alt=""></a></span>
-
-			<span><a href="#" onmouseover="changeicon(y)"><img src="../images/icon-social/youtube-a.png" width="32" height="32" border="0" alt=""></a></span>
-		</div>
-		<div class="large-4 columns">	
-			<img src="../images/sos_logo_tran.png" width="120" height="40" border="0" alt="">
-			<p>Software-Operation Support System</p>
-			<hr />
-			<p>Email Address</p>
-			<input type="email" id="" name="" placeholder="Email Address">
-			<p>Message</p>
-			<textarea rows="5" placeholder="Comment"></textarea>
-			<input type="submit" value="submit">
-		</div>
-	</div>
 	</section>
 	<!-- side bottom -->
 	<!-- Bottom bar -->
-	
+	<nav class="top-bar">
+		<div class="row">
+				<div class="Menu-bottom bottom-bar">
+					<center><a href="">Sitemap</a></center>
+				</div>
+		</div>
+	</nav>
 	<!-- Bottom bar -->
-	<!-- Sign in Box-->
-	<div id="signin-box"  style="display:none;" class="signin-box" >
-		<div>
-			<span style="float:left; margin-left:100px;"><center><h6>Sign in</h6></center></span>
-			<span style="float:right; cursor:pointer;" onclick="hideSignin()"><img src="../images/button-cross_sticker.png" width="" height="" border="0" alt=""></span>
-			<hr />
-			<div style="padding-left:10px; padding-right:10px;">
-			<h4>Email</h4>
-			<input type="email" id="" name="" placeholder="Email Address">
-			<h4>Password</h4>
-			<input type="password" id="" name="" placeholder="Password">
-			<a href="#">Forget Password ?</a>
-			<hr />
-			<span style="float:left;"><p><a href="main.html" class="button">Sign in</a></p></span>
-			<span style="float:right;"><p><a href="#" class="button success" onclick="showSignup()">Sign up</a></p></span>
-			
-			</div>
-		</div>
-	</div>
-	<!-- Sign in Box-->
-	<!-- Sign up Box-->
-	<div id="signup-box" class="large-6 columns signup-box" style="display:none;">
-			<div>
-				<div style="float:left; margin-left:13px"><h5>Sign Up</h5></div>
-				<div style="float:right;" onclick="hideSignup()"><img src="../images/button-cross_sticker.png" width="" height="" border="0" alt=""></div>
-				<hr />
-			</div>
-			
-			<div class="large-6 columns">
-				<h6>Email</h6>
-				<input type="email" id="" name="" placeholder="Email Address">
-				<h6>Password</h6>
-				<input type="password" id="" name="" placeholder="Password">
-				<h6>Confirm Password</h6>
-				<input type="password" id="" name="" placeholder="Confirm Password">
-			</div>
-			<div class="large-6 columns">	
-				<h6>Your Name</h6>
-				<input type="text" id="" name="" placeholder="Your Name">
-				<hr />
-				<img src="../images/picture-home/profile.png" width="150" height="150" border="0" alt="">
-				<input type="file" id="" name="">
-				<span style="float:left;"><p><a href="#" class="button success">Sign up</a></p></span>
-				<span style="margin-left:10px"><input type="reset" id="" name="" class="button alert" value="Reset"></span>
-			</div>		
-		</div>
-	<!-- Sign up Box-->
+
 
   <script>
 	function showSignin() {

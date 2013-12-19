@@ -25,7 +25,7 @@
 						<a href="<?php echo base_url()?>guide">GUIDE</a>
 						<a href="<?php echo base_url()?>knowledge">KNOWLEDGE</a>
 						<a href="<?php echo base_url()?>contactus">CONTACT</a>
-						<a href="<?php echo base_url()?>signup">SIGN UP</a>
+						<a href="<?php echo base_url()?>form/signup">SIGN UP</a>
 						</ul>
 
 
