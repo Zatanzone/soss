@@ -1,7 +1,7 @@
 <div class="row">
 <div class="large-8 columns">
 	<div class="large-12 columns">
-		
+	<?php print_r($member);?>
 	<h4><?php echo $pname;?> <br>( Project Manager )</h4>
 		<hr />
 		<input type="hidden" id="pid" value="<?php echo $pid?>" />
@@ -24,7 +24,41 @@
 	</div>
 	<div class="large-12 columns">
 	<h3>Project Member</h3>
-	<div class="row large-12 columns" id="member"></div>
+	<div class="row large-12 columns" id="member">
+	
+	<div id = "myproject">
+			<div class="datagrid">
+			<table>
+				<thead><tr><th>List</th><th>Member Name</th><th>Role</th><th>Active</th></tr></thead>
+				<tbody>
+				<?php
+				if (count ( $member ) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
+					echo "<tr><td colspan = '4' align='center'> -- no member --</td></tr>";
+					} else {
+				$no = 1;
+				foreach ( $member as $mb ) {
+					echo "<tr>";
+					echo "<td align='center'>$no</td>";
+					echo "<td>"  .$mb['NAME'] ."</td>";
+					if (empty($mb['RID'])|$mb['RID']==0) {
+						echo "<td>".form_dropdown('role', $roleOption, 'null')."</td>";
+					}else{
+						echo "<td>".form_dropdown('role', $roleOption, $mb['RID'])."</td>";
+					}
+					
+					
+					echo "<td class='small alert button'>".anchor ( "project/index/" . $mb['UID'], 'Retire'  )."</td>";
+					$no++;
+				}
+			}
+			 ?>
+			
+				</tbody>
+				</table>
+			</div>	
+			</div>
+	
+	</div>
 	</div>
 </div>
 	<script>
@@ -69,12 +103,15 @@ $("#searchbt").on("click",function(){
 	
 	});
 
+	
 $.getJSON('member/memberList/'+pid, function(data) { 
     var table='<center><table class="large-12 columns">';
     /* loop over each object in the array to create rows*/
    	 $.each( data, function( index, item){
           /* add to html string started above*/
-	 table+="<tr><td>"+item.NAME+"</td><td>"+item.EMAIL+"</td><td><a href='member/add/"+item.UID+"/"+pid+"' onclick='return conf();' style='color: #fff!important;' class='small alert button'>Retire</a></td></tr>";       
+	 table+="<tr><td>"+item.NAME+"</td><td>"+item.EMAIL+"</td>";
+	 table+="<td></td>";      
+	 table+="<td><a href='member/add/"+item.UID+"/"+pid+"' onclick='return conf();' style='color: #fff!important;' class='small alert button'>Retire</a></td></tr>"; 
     });
     table+='</table></center>';
 /* insert the html string*/
