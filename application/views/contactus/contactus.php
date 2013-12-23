@@ -1,22 +1,43 @@
 <!-- main Content -->
 	
-			<div class="row">
+	<div class="row">
 				<div class="large-8 columns">
 				<h3>Contact</h3>
 					<div class="panel">
-						<h6>Name</h6>
-						<input type="text" id="" name="" placeholder="Your name">
-						<h6>Email</h6>
-						<input type="email" id="" name="" placeholder="Your email">
-						<h6>Telephone Number</h6>
-						<input type="text" id="" name="" placeholder="Your telephone number">
-						<h6>Message</h6>
-						<textarea rows="10"  id="" name="" placeholder="Comment"></textarea>
-						<button class="small">Send</button>
+		<?php
+			if (isset($_REQUEST['email']))
+			//if "email" is filled out, send email
+			  {
+			  //send email
+			  $names = $_REQUEST['names'] ;
+			  $email = $_REQUEST['email'] ;
+			  $subject = $_REQUEST['subject'] ;
+			  $message = $_REQUEST['message'] ;
+			  mail("soss.phuket@gmail.com", $names, $subject,
+			  $message, "From:" . $email);
+			  echo "Thank you for using our mail form";
+			  }
+			else
+			//if "email" is not filled out, display the form
+			  {
+			  echo "<form method='post' action=''>
+			  <h6>Name</h6>
+			  <input name='names' type='text' >
+			  <h6>Email</h6>		
+			  <input name='email' type='text' >
+			  <h6>Subject</h6>
+			  <input name='subject' type='text' >
+			  <h6>Message</h6>
+			  <textarea name='message' rows='15' cols='40'></textarea>
+			  <input type='submit' >
+			  </form>";
+			  }
+		?>
+	
 					</div>
 				</div>
 			</div>
-		
+						
 <!-- main Content -->
 <!-- side location -->
 		<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.th/maps?f=q&amp;source=s_q&amp;hl=th&amp;geocode=&amp;q=%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%AA%E0%B8%87%E0%B8%82%E0%B8%A5%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C+%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A0%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B8%81%E0%B8%B0%E0%B8%97%E0%B8%B9%E0%B9%89+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94+%E0%B8%A0%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95&amp;aq=2&amp;oq=%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%AA%E0%B8%87%E0%B8%82%E0%B8%A5%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C&amp;sll=13.038936,101.490104&amp;sspn=26.489806,43.198242&amp;ie=UTF8&amp;hq=%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%AA%E0%B8%87%E0%B8%82%E0%B8%A5%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C+%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A0%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B8%81%E0%B8%B0%E0%B8%97%E0%B8%B9%E0%B9%89+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94+%E0%B8%A0%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95&amp;ll=7.894861,98.352109&amp;spn=0.006631,0.010546&amp;t=m&amp;z=14&amp;iwloc=A&amp;cid=4894662303488376504&amp;output=embed"></iframe><br />
