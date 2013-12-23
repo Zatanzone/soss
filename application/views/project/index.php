@@ -24,7 +24,6 @@
 				</div>
 			</div>
 			<hr />
-			
 			<h4>Calendar</h4><hr />
 			<img src="<?php echo base_url()?>images/picture/calendar.jpg" width="695" height="464" border="0" alt="">
 

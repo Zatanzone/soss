@@ -15,7 +15,6 @@
 			<div class="large-3 columns left">
 				<input type="button" class="button" id="searchbt" value="Search">
 			</div>
-
 		</div>
 		<div class="row large-12 columns" id="show"></div>
 		<hr />

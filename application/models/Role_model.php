@@ -8,8 +8,7 @@ class Role_model extends CI_Model{
 		$query = $this->db->get('tb_role');
 		
 		$role = $query->result_array();
-// 		print_r($role);
-// 		exit;
+
 		
 		
 		return $option;

@@ -13,7 +13,6 @@ class Member_model extends CI_Model{
 		$this->db->or_like('EMAIL', $key);
 		
 		$query = $this->db->get();
-		
 		//echo $this->db->last_query();    
 		return $query;
 	}

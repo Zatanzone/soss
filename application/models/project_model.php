@@ -27,10 +27,7 @@ class Project_model extends CI_Model
 		$data = $query->result_array();
 		
 		//echo $this->db->last_query();
-		
-		//print_r($data['myTeam']);
-		//exit();
-		
+
 		return $data;
 	}
 	

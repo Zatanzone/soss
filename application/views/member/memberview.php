@@ -5,7 +5,6 @@
 	<h4><?php echo $pname;?> <br>( Project Manager )</h4>
 		<hr />
 		<input type="hidden" id="pid" value="<?php echo $pid?>" />
-
 	</div>
 	<div class="large-12 columns">
 	<h3>Project Member</h3>
