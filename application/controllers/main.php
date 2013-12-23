@@ -3,7 +3,6 @@ class Main extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		
 	}
 
 	public function index()
@@ -13,7 +12,8 @@ class Main extends CI_Controller {
 		}else{
 		$this->load->model('Project_model');
 		$uid = $this->session->userdata('user_id');
-		$project = $this->Project_model->getListMyProject($uid);
+		$project['myProject'] = $this->Project_model->getListMyProject($uid);
+		$project['myTeam'] = $this->Project_model->getListMyTeam($uid);
 		$this->load->view('main/index',$project);
 		$this->load->view('projectside',$project);
 		}

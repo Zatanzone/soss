@@ -13,7 +13,6 @@ class Member_model extends CI_Model{
 		$this->db->or_like('EMAIL', $key);
 		
 		$query = $this->db->get();
-		
 		//echo $this->db->last_query();    
 		return $query;
 	}
@@ -21,7 +20,7 @@ class Member_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('tb_team');
 		$this->db->join('tb_user', 'tb_user.UID = tb_team.UID');
-		//$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
+		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
 		$this->db->where('PID', $pid);
 		
 		$query = $this->db->get();

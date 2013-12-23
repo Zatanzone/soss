@@ -11,7 +11,6 @@ class Project extends CI_Controller{
 		$project = $this->Project_model->getProject($pid);
 
 		//print_r($project);
-		
 		foreach ($project as $p){
 			$data['pid'] = $p['PID'];
 			$data['project'] = $p['PROJECT'];
