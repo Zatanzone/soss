@@ -5,6 +5,7 @@ class Member extends CI_Controller
 		parent::__construct();
 		$this->load->model('Member_model');
 		$this->load->model('Role_model');
+		$this->load->model('Project_model');
 	}
  
 	public function index(){
@@ -26,9 +27,21 @@ class Member extends CI_Controller
 		$pro['member']= $this->memberList($_GET['pid']);
 		$pro['pid'] = $_GET['pid'];
 		$pro['pname'] = $_GET['pname'];
-		$this->load->view('projectheader');
-		$this->load->view('member/member',$pro);
-		$this->load->view('projectside');
+		
+		$checkPM= $this->Project_model->checkPM($_GET['pid']);
+	
+		if ($checkPM[0]['UID'] != $this->session->userdata('user_id')) {
+			$this->load->view('projectheader');
+			$this->load->view('member/memberview',$pro);
+			$this->load->view('projectside');
+		}else{
+			$this->load->view('projectheader');
+			$this->load->view('member/member',$pro);
+			$this->load->view('projectside');
+		}
+		
+		
+		
 		}
 	}
 	

@@ -125,19 +125,22 @@
 			<table>
 				<thead><tr><th>List</th><th>Project Name</th><th>Project Manager</th><th>Role</th></tr></thead>
 				<tbody>
-				<tr>
-					<td>1</td>
-					<td>Project Q</td>
-					<td>Sirakoop</td>
-					<td>Tester</td>
-				</tr>
-				<tr class="alt">
-					<td>2</td>
-					<td>Project W</td>
-					<td>Worawan</td>
-					<td>Test Designer</td>
-				</tr>
-							
+				<?php
+				if (count ( $myTeam) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
+					echo "<tr><td colspan = '4' align='center'> -- no data --</td></tr>";
+					} else {
+				$no = 1;
+				foreach ( $myTeam as $mt ) {
+					echo "<tr>";
+					echo "<td align='center'>$no</td>";
+					echo "<td>"  . anchor ( "project/index/" . $mt['PID'], $mt ['PROJECT']  ) . "</td>";
+					echo "<td>" .$mt['NAME'] ."</td>";
+					echo "<td>" .$mt['ROLE'] ."</td>";
+					$no++;
+				}
+			}
+			 ?>
+			
 				</tbody>
 				</table>
 			</div>	

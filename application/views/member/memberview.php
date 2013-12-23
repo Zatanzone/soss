@@ -1,25 +1,11 @@
 <div class="row">
 <div class="large-8 columns">
 	<div class="large-12 columns">
+
 	<h4><?php echo $pname;?> <br>( Project Manager )</h4>
 		<hr />
 		<input type="hidden" id="pid" value="<?php echo $pid?>" />
-		<div class="row">
-			<div class="large-6 columns">
-				<div class="panel">
-					<input type="text" id="key" name="key"
-						placeholder="Search team member">
 
-				</div>
-			</div>
-			<div class="large-3 columns left">
-				<input type="button" class="button" id="searchbt" value="Search">
-			</div>
-
-		</div>
-		<div class="row large-12 columns" id="show"></div>
-		<hr />
-		
 	</div>
 	<div class="large-12 columns">
 	<h3>Project Member</h3>
@@ -28,7 +14,7 @@
 	<div id = "myproject">
 			<div class="">
 			<table>
-				<thead><tr><th>List</th><th>Member Name</th><th>Role</th><th>Active</th></tr></thead>
+				<thead><tr><th>List</th><th>Member Name</th><th>Role</th><th>Phone</th></tr></thead>
 				<tbody>
 				<?php
 				if (count ( $member ) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
@@ -39,14 +25,8 @@
 					echo "<tr>";
 					echo "<td align='center'>$no</td>";
 					echo "<td>"  .$mb['NAME'] ."</td>";
-					if (empty($mb['RID'])|$mb['RID']==0) {
-						echo "<td>".form_dropdown('role', $roleOption, 'null')."</td>";
-					}else{
-						echo "<td>".form_dropdown('role', $roleOption, $mb['RID'])."</td>";
-					}
-					
-					
-					echo "<td class='small alert button'>".anchor ( "project/index/" . $mb['UID'], 'Retire'  )."</td>";
+					echo "<td>".$mb['ROLE']."</td>";
+					echo "<td>".$mb['PHONE']."</td>";
 					$no++;
 				}
 			}

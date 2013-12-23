@@ -9,7 +9,28 @@ class Project_model extends CI_Model
 	public function getListMyProject($uid){
 		
 		$query = $this->db->get_where('tb_project', array('uid' => $uid));
-		$data['myProject'] = $query->result_array();
+		$data = $query->result_array();
+		return $data;
+	}
+	
+	public function getListMyTeam($uid){
+	
+		$this->db->select('tb_team.PID,tb_project.PROJECT,tb_user.NAME,tb_role.ROLE');
+		$this->db->from('tb_team');
+		$this->db->join('tb_project', 'tb_project.PID = tb_team.PID');
+		$this->db->join('tb_user', 'tb_user.UID = tb_project.UID');
+		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
+		$this->db->where('tb_team.UID', $uid);
+		
+		$query = $this->db->get();
+		
+		$data = $query->result_array();
+		
+		//echo $this->db->last_query();
+		
+		//print_r($data['myTeam']);
+		//exit();
+		
 		return $data;
 	}
 	
@@ -19,6 +40,15 @@ class Project_model extends CI_Model
 		$data = $query->result_array();
 		return $data;
 	}
+	
+	public function  checkPM($pid){
+	
+		$query = $this->db->get_where('tb_project', array('pid' => $pid));
+		$data = $query->result_array();
+		
+		return $data;
+	}
+
 
 	public function create($data){
 		

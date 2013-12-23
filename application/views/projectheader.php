@@ -22,7 +22,7 @@
           </h1>	  
 		</li>
 		<div class="icon-profile" >
-			<a href="<?php base_url('main')?>"><img src="<?php echo base_url();?>images/home_w.png" width="32" height="32" border="0" alt=""></a>
+			<a href="<?php echo base_url();?>main"><img src="<?php echo base_url();?>images/home_w.png" width="32" height="32" border="0" alt=""></a>
 		</div>
 		
 	 </nav>

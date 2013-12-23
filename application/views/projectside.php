@@ -5,7 +5,7 @@
 <div class="panel">
 <h6><?php echo $this->session->userdata('user_name');?></h6>
 				<p><?php echo $this->session->userdata('user_email');?></p>
-				<p><a href="session/signout" class="small alert button">Sign Out</a></p>
+				<p><a href="<?php echo base_url()?>session/signout" class="small alert button">Sign Out</a></p>
 				<hr />
 				<h6><a href="newproject.html" id="" name="">New Project</a></h6>
 				<h6><a href="notifications.html" id="" name="">Notifications</a></h6>
