@@ -26,8 +26,7 @@ class Project_model extends CI_Model
 		
 		$data = $query->result_array();
 		
-		//echo $this->db->last_query();
-
+		
 		return $data;
 	}
 	
@@ -41,8 +40,9 @@ class Project_model extends CI_Model
 		$this->db->where('tb_team.PID', $pid);
 		$query = $this->db->get();
 		//$query = $this->db->get_where('tb_project', array('pid' => $pid));
+	
 		//echo $this->db->last_query();
-		
+
 		$data = $query->result_array();
 		return $data;
 	}
@@ -69,6 +69,23 @@ class Project_model extends CI_Model
 		
 		if($this->db->insert('tb_project',$insert)){
 			$success = "Create Project successfull!!";
+			
+			$this->db->select('PID');
+			$this->db->from('tb_project');
+			$this->db->where('PROJECT', $insert['PROJECT']);
+			$qpid = $this->db->get();
+			
+			$pid = $qpid->result_array();
+			
+			$insertteam =array(
+				'PID' => $pid[0]['PID'],
+				'UID' => $data['uid'],
+				'RID' => 5 // Project Manager
+			);
+			
+			$this->db->insert('tb_team',$insertteam);
+			
+			
 			$this->session->set_flashdata('success',$success);
 			redirect('main','refesh');
 		}else{
