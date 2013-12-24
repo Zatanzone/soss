@@ -21,6 +21,7 @@ class Project_model extends CI_Model
 		$this->db->join('tb_user', 'tb_user.UID = tb_project.UID');
 		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
 		$this->db->where('tb_team.UID', $uid);
+		$this->db->where_not_in('tb_team.RID', 5);
 		
 		$query = $this->db->get();
 		
