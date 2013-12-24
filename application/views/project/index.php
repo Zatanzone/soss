@@ -2,10 +2,10 @@
 	<!-- main Content -->
 	<div class="row">
 		<div class="large-8 columns">
-			<h4><?php echo $project;?></h4><hr />
+			<h4><?php echo $project;?> :: <?php echo $role;?></h4><hr />
 			<div class="row">
 				<div class="large-4 columns">
-						<a href="<?php echo base_url();?>member?pid=<?php echo $pid;?>&pname=<?php echo $project;?>">
+						<a href="<?php echo base_url();?>member/index/<?php echo $pid;?>">
 						<center><img src="<?php echo base_url()?>images/member.png" width="128" height="128" border="0" alt=""></center>
 						<center><h6>Member & Role</h6></center>
 						</a>

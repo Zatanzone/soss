@@ -33,7 +33,16 @@ class Project_model extends CI_Model
 	
 	public function  getProject($pid){
 		
-		$query = $this->db->get_where('tb_project', array('pid' => $pid));
+		$this->db->select('*');
+		$this->db->from('tb_project');
+		$this->db->join('tb_team', 'tb_team.PID = tb_project.PID');
+		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
+		$this->db->where('tb_team.UID', $this->session->userdata('user_id'));
+		$this->db->where('tb_team.PID', $pid);
+		$query = $this->db->get();
+		//$query = $this->db->get_where('tb_project', array('pid' => $pid));
+		//echo $this->db->last_query();
+		
 		$data = $query->result_array();
 		return $data;
 	}
