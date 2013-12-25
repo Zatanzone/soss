@@ -182,9 +182,6 @@
   
   -->
   
-  <script>
-    $(document).foundation();
-  </script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
