@@ -9,27 +9,30 @@
 			//if "email" is filled out, send email
 			  {
 			  //send email
-			  $names = $_REQUEST['names'] ;
-			  $email = $_REQUEST['email'] ;
+			  $to = "soss.phuket@gmail.com";
 			  $subject = $_REQUEST['subject'] ;
-			  $message = $_REQUEST['message'] ;
-			  mail("soss.phuket@gmail.com", $names, $subject,
-			  $message, "From:" . $email);
-			  echo "Thank you for using our mail form";
+			  $email = $_REQUEST['email'] ;
+			  $names = $_REQUEST['names'];
+			  $message = $names."\r\n\r\n".$_REQUEST['message']."\r\n\r\n";
+			  $headers = 'From: '.$email."\r\n".'Reply-To: '.$email."\r\n" .'X-Mailer: PHP/' . phpversion();
+			  
+			  mail($to, $subject, $message, $headers);
+			  
+			  echo "Thank you for contact";
 			  }
 			else
 			//if "email" is not filled out, display the form
 			  {
 			  echo "<form method='post' action=''>
-			  <h6>Name</h6>
-			  <input name='names' type='text' >
-			  <h6>Email</h6>		
-			  <input name='email' type='text' >
 			  <h6>Subject</h6>
 			  <input name='subject' type='text' >
+			  <h6>Email</h6>		
+			  <input name='email' type='text' >
+			  <h6>Name</h6>		
+			  <input name='names' type='text' >
 			  <h6>Message</h6>
 			  <textarea name='message' rows='15' cols='40'></textarea>
-			  <input type='submit' >
+			  <input type='submit' class='button small'>
 			  </form>";
 			  }
 		?>

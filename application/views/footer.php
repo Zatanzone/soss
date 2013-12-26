@@ -1,14 +1,5 @@
 <!-- sent mail -->
-<?php
-if($_POST){
-$to = "soss.phuket@gmail.com";
-$subject = "Contact mail";
-$message = $_POST['txtmessage'];
-$from = $_POST['txtemail'];
-$headers = "From:" . $from;
-mail($to,$subject,$message,$headers);
-}
-?>
+
 <!-- sent mail -->
 <!-- side botton -->
 	<section class="side-bottom">
@@ -56,7 +47,7 @@ mail($to,$subject,$message,$headers);
 				<a href="#">Software Operation Support System</a>
 				<hr />
 									
-				<form method='POST' action=''>
+				<form>
 				<p>Email Address</p>
 				<input type="email" id="txtemail" name="txtemail" placeholder="Email Address">
 				<p>Message</p>
