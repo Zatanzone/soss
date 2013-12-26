@@ -8,9 +8,16 @@ class Project_model extends CI_Model
 	
 	public function getListMyProject($uid){
 		
-		$query = $this->db->get_where('tb_project', array('uid' => $uid));
+		
+		$sql= "SELECT *,datediff(ENDDATE,STARTDATE) as day FROM `tb_project` where UID = ".$uid.";";
+		$this->db->query($sql);
+		$query = $this->db->query($sql);
 		$data = $query->result_array();
+		//  echo $this->db->last_query();
 		return $data;
+		//$query = $this->db->get_where('tb_project', array('uid' => $uid));
+		//$data = $query->result_array();
+		//return $data;	
 	}
 	
 	public function getListMyTeam($uid){
