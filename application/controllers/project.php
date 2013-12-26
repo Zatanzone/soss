@@ -16,7 +16,7 @@ class Project extends CI_Controller{
 			$data['project'] = $p['PROJECT'];
 			$data['detail'] = $p['DETAIL'];
 			$data['pm'] = $p['UID'];
-			
+			$data['role'] = $p['ROLE'];
 		}
 		
 		//$projectname = $project['PROJECT'];

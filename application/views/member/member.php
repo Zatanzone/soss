@@ -1,7 +1,7 @@
 <div class="row">
 <div class="large-8 columns">
 	<div class="large-12 columns">
-	<h4><?php echo $pname;?> <br>( Project Manager )</h4>
+	<h4><?php echo $name[0]['PROJECT'];?> <br>( <?php echo $name[0]['ROLE'];?> )</h4>
 		<hr />
 		<input type="hidden" id="pid" value="<?php echo $pid?>" />
 		<div class="row">
@@ -22,30 +22,35 @@
 	</div>
 	<div class="large-12 columns">
 	<h3>Project Member</h3>
+	
 	<div class="row large-12 columns" id="member">
 	
 	<div id = "myproject">
 			<div class="">
+	<?php echo form_open('member/setRole')?>
 			<table>
+				
 				<thead><tr><th>List</th><th>Member Name</th><th>Role</th><th>Active</th></tr></thead>
 				<tbody>
 				<?php
+				
 				if (count ( $member ) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
 					echo "<tr><td colspan = '4' align='center'> -- no member --</td></tr>";
 					} else {
 				$no = 1;
 				foreach ( $member as $mb ) {
+					
 					echo "<tr>";
-					echo "<td align='center'>$no</td>";
+					echo "<td align='center'>$no<input type='hidden' name='uid[]' value=".$mb['UID']." /></td>";
 					echo "<td>"  .$mb['NAME'] ."</td>";
-					if (empty($mb['RID'])|$mb['RID']==0) {
-						echo "<td>".form_dropdown('role', $roleOption, 'null')."</td>";
-					}else{
-						echo "<td>".form_dropdown('role', $roleOption, $mb['RID'])."</td>";
-					}
+// 					if (empty($mb['RID'])|$mb['RID']==0) {
+// 						echo "<td>".form_dropdown('role[1]', $roleOption, 'null')."</td>";
+// 					}else{
+						echo "<td>".form_dropdown('role['.$mb['UID'].']', $roleOption, $mb['RID'])."</td>";
+					//}
 					
 					
-					echo "<td class='small alert button'>".anchor ( "project/index/" . $mb['UID'], 'Retire'  )."</td>";
+					echo "<td class='small alert button'>".anchor ( "member/del/" . $mb['TID'].'/'.$mb['PID'], 'Retire'  )."</td>";
 					$no++;
 				}
 			}
@@ -53,10 +58,13 @@
 			
 				</tbody>
 				</table>
+				<input type="hidden" name="pid" value="<?php echo $pid?>" />
+				<input type="submit" value="Set Role" class="button" style=" float: right;"/>
 			</div>	
 			</div>
 	
 	</div>
+	<?php echo form_close();?>
 	</div>
 </div>
 	<script>
@@ -75,18 +83,18 @@ function conf()
 
 $("#searchbt").on("click",function(){
 
-	key = $("#key").val();
-	
+	key = $("#key").val();	
 
 	/* Get result form array by json and at it it to html table*/
-	$.getJSON('member/search/'+key, function(data) { 
+	$.getJSON('../search/'+key, function(data) { 
 	      var table='<center><table class="large-12 columns">';
 	      /* loop over each object in the array to create rows*/
 	      if(data!=null){
 	      
 	      $.each( data, function( index, item){
 	            /* add to html string started above*/
-		 table+="<tr><td>"+item.NAME+"</td><td>"+item.EMAIL+"</td><td><a href='member/add/"+item.UID+"/"+pid+"' onclick='return conf();'>Invite</a></td></tr>";       
+	           
+		 table+="<tr><td>"+item.NAME+"</td><td>"+item.EMAIL+"</td><td><a href='../add/"+item.UID+"/"+pid+"' onclick='return conf();'>Invite</a></td></tr>";       
 	      });
 	      table+='</table></center>';
 	/* insert the html string*/

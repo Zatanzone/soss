@@ -28,19 +28,29 @@ class Project_model extends CI_Model
 		$this->db->join('tb_user', 'tb_user.UID = tb_project.UID');
 		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
 		$this->db->where('tb_team.UID', $uid);
+		$this->db->where_not_in('tb_team.RID', 5);
 		
 		$query = $this->db->get();
 		
 		$data = $query->result_array();
 		
-		//echo $this->db->last_query();
-
+		
 		return $data;
 	}
 	
 	public function  getProject($pid){
 		
-		$query = $this->db->get_where('tb_project', array('pid' => $pid));
+		$this->db->select('*');
+		$this->db->from('tb_project');
+		$this->db->join('tb_team', 'tb_team.PID = tb_project.PID');
+		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
+		$this->db->where('tb_team.UID', $this->session->userdata('user_id'));
+		$this->db->where('tb_team.PID', $pid);
+		$query = $this->db->get();
+		//$query = $this->db->get_where('tb_project', array('pid' => $pid));
+	
+		//echo $this->db->last_query();
+
 		$data = $query->result_array();
 		return $data;
 	}
@@ -67,6 +77,23 @@ class Project_model extends CI_Model
 		
 		if($this->db->insert('tb_project',$insert)){
 			$success = "Create Project successfull!!";
+			
+			$this->db->select('PID');
+			$this->db->from('tb_project');
+			$this->db->where('PROJECT', $insert['PROJECT']);
+			$qpid = $this->db->get();
+			
+			$pid = $qpid->result_array();
+			
+			$insertteam =array(
+				'PID' => $pid[0]['PID'],
+				'UID' => $data['uid'],
+				'RID' => 5 // Project Manager
+			);
+			
+			$this->db->insert('tb_team',$insertteam);
+			
+			
 			$this->session->set_flashdata('success',$success);
 			redirect('main','refesh');
 		}else{
