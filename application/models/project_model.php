@@ -18,6 +18,7 @@ class Project_model extends CI_Model
 		//$query = $this->db->get_where('tb_project', array('uid' => $uid));
 		//$data = $query->result_array();
 		//return $data;	
+		////
 	}
 	
 	public function getListMyTeam($uid){
