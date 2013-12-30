@@ -97,7 +97,7 @@
 			<div id = "myproject">
 			<div class="datagrid">
 			<table>
-				<thead><tr><th>List</th><th>Project Name</th><th>Duration</th></tr></thead>
+				<thead><tr><th>List</th><th>Project Name</th><th>Duration(day)</th></tr></thead>
 				<tbody>
 				<?php
 				if (count ( $myProject ) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
@@ -108,8 +108,8 @@
 					echo "<tr>";
 					echo "<td align='center'>$no</td>";
 					echo "<td>"  . anchor ( "project/index/" . $mp['PID'], $mp ['PROJECT']  ) . "</td>";
-					$duration =  $mp ['ENDDATE'] - $mp['STARTDATE'];
-					echo "<td>" .$duration . "</td>";
+					//$duration =  $mp ['ENDDATE'] - $mp['STARTDATE'];
+					echo "<td>" .$mp['day'] . "</td>";
 					$no++;
 				}
 			}
@@ -149,22 +149,24 @@
 			<div id = "mysuccess">
 			<div class="datagrid">
 			<table>
-				<thead><tr><th>List</th><th>Project Name</th><th>Project Manager</th><th>Role</th><th>Duration</th></tr></thead>
+				<thead><tr><th>List</th><th>Project Name</th><th>Project Manager</th><th>Role</th><th>Duration(day)</th></tr></thead>
 				<tbody>
-				<tr>
-					<td>1</td>
-					<td>Project X</td>
-					<td>Wooddy</td>
-					<td>Tester</td>
-					<td>6 Months</td>
-				</tr>
-				<tr class="alt">
-					<td>2</td>
-					<td>Project Y</td>
-					<td>Atom</td>
-					<td>Test Designer</td>
-					<td>2 Months</td>
-				</tr>
+				<?php
+				if (count ( $mySuccess) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
+					echo "<tr><td colspan = '4' align='center'> -- no data --</td></tr>";
+					} else {
+				$no = 1;
+				foreach ( $mySuccess as $ms ) {
+					echo "<tr>";
+					echo "<td align='center'>$no</td>";
+					echo "<td>"  . anchor ( "project/index/" . $ms['PID'], $ms ['PROJECT']  ) . "</td>";
+					echo "<td>" .$ms['NAME'] ."</td>";
+					echo "<td>" .$ms['ROLE'] ."</td>";
+					echo "<td>" .$ms['day'] ."</td>";
+					$no++;
+				}
+			}
+			 ?>
 							
 				</tbody>
 				</table>

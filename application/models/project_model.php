@@ -8,17 +8,15 @@ class Project_model extends CI_Model
 	
 	public function getListMyProject($uid){
 		
-		
-		$sql= "SELECT *,datediff(ENDDATE,STARTDATE) as day FROM `tb_project` where UID = ".$uid.";";
+		$sql= "SELECT PID,PROJECT,datediff(ENDDATE,STARTDATE) as day 
+				FROM `tb_project` 
+				where STATUS = 'N' and 
+					  DELETED = 'N' and UID = ".$uid.";";
 		$this->db->query($sql);
 		$query = $this->db->query($sql);
 		$data = $query->result_array();
-		//  echo $this->db->last_query();
+		
 		return $data;
-		//$query = $this->db->get_where('tb_project', array('uid' => $uid));
-		//$data = $query->result_array();
-		//return $data;	
-		////
 	}
 	
 	public function getListMyTeam($uid){
@@ -30,12 +28,28 @@ class Project_model extends CI_Model
 		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');
 		$this->db->where('tb_team.UID', $uid);
 		$this->db->where_not_in('tb_team.RID', 5);
-		
+		$this->db->where_not_in('tb_project.STATUS', 'F');
+		$this->db->where_not_in('tb_project.DELETED', 'Y');
 		$query = $this->db->get();
-		
 		$data = $query->result_array();
 		
-		
+		return $data;
+	}
+	
+	public function getListMySuccess($uid){
+	
+		$sql= "select tb_project.PID, tb_project.PROJECT, tb_user.NAME, tb_role.ROLE, datediff(ENDDATE,STARTDATE) as day
+				from  tb_project, tb_user, tb_role, tb_team
+				where tb_project.STATUS = 'F' and
+					  tb_project.DELETED='N' and
+					  tb_team.UID ='".$uid."' and
+					  tb_user.UID = tb_project.UID and	
+					  tb_team.RID = tb_role.RID and
+					  tb_project.PID = tb_team.PID;";
+		$this->db->query($sql);
+		$query = $this->db->query($sql);
+		$data = $query->result_array();
+	
 		return $data;
 	}
 	
@@ -72,7 +86,7 @@ class Project_model extends CI_Model
 				'DETAIL' => $data['projectdetail'],
 				'STARTDATE' => $data['startdate'],
 				'ENDDATE'=>$data['enddate'],
-				'MEMBER'=>$data['member'],
+				//'MEMBER'=>$data['member'],
 				'UID'=>$data['uid']
 		);
 		

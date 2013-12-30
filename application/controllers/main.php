@@ -14,6 +14,7 @@ class Main extends CI_Controller {
 		$uid = $this->session->userdata('user_id');
 		$project['myProject'] = $this->Project_model->getListMyProject($uid);
 		$project['myTeam'] = $this->Project_model->getListMyTeam($uid);
+		$project['mySuccess'] = $this->Project_model->getListMySuccess($uid);
 		$this->load->view('main/index',$project);
 		$this->load->view('projectside',$project);
 		}
