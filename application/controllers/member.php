@@ -25,17 +25,11 @@ class Member extends CI_Controller
 			
 		$pro['member']= $this->memberList($pid);
 		$pro['name'] = $this->Project_model->getProject($pid);
-		
-		//print_r($pro['name']);
-		
 		$pro['pid'] = $pid;
-		//$pro['pname'] = $_GET['pname'];
-		
+
 		$checkPM= $this->Project_model->checkPM($pid);
-		//print_r($checkPM);
-		
-		
-		 if ($checkPM[0]['UID'] != $this->session->userdata('user_id')) {
+
+		 if (!$checkPM) {
 			$this->load->view('projectheader');
 			$this->load->view('member/memberview',$pro);
 			$this->load->view('projectside');
