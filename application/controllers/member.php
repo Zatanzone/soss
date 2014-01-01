@@ -24,7 +24,13 @@ class Member extends CI_Controller
 		);
 			
 		$pro['member']= $this->memberList($pid);
-		$pro['name'] = $this->Project_model->getProject($pid);
+		$project = $this->Project_model->getProject($pid);
+		//print_r($project);
+		foreach ($project as $pj){
+			$pro['name']  = $pj['PROJECT'];
+			$pro['role']  = $pj['ROLE'];			
+		}
+		
 		$pro['pid'] = $pid;
 
 		$checkPM= $this->Project_model->checkPM($pid);

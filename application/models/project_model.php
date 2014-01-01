@@ -75,11 +75,14 @@ class Project_model extends CI_Model
 		$query = $this->db->get_where('tb_project', array('pid' => $pid));
 		$data = $query->result_array();
 		
+		$chkPM = FALSE;
+		$pm = 0;
+		
 		foreach ($data as $row){
 			$pm = $row['UID'];
 		}
 		
-		$chkPM = FALSE;
+		
 		
 		if ($pm == $this->session->userdata('user_id')) {
 			$chkPM = TRUE;

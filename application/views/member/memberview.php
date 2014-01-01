@@ -1,8 +1,8 @@
 <div class="row">
 <div class="large-8 columns">
 	<div class="large-12 columns">
-<?php print_r($name);?>
-	<h4><?php echo $name[0]['PROJECT'];?> <br>( <?php echo $name[0]['ROLE'];?> )</h4>
+
+	<h4><?php echo $name?> <br>( <?php echo $role?> )</h4>
 		<hr />
 		<input type="hidden" id="pid" value="<?php echo $pid?>" />
 	</div>
