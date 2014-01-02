@@ -14,7 +14,7 @@
       
         <li class="name">
           <h1>
-            <a href="index.html"><img src="img/logo_elephant.png" width="180" height="42" border="0" alt="" style="margin-left:-15px;"></a>
+            <a href="index"><img src="img/logo_elephant.png" width="180" height="42" border="0" alt="" style="margin-left:-15px;"></a>
           </h1>	  
 		</li>
 		<div class="icon-profile" onclick="showProfile()">

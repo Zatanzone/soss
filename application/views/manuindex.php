@@ -37,30 +37,39 @@
 						<section>
 						<div style="float: left;" onclick="showMenu()">
 						<h6>
-						<a><img src="images/menu-wht.png" width="25" height="auto"
+						<a><img src="<?php echo base_url()?>images/menu-wht.png" width="25" height="auto"
 								border="0" alt="">Menu</a>
 								</h6>
 								</div>
 										<div id="menu-small" style="display: none;">
 										<hr />
-										<li><a href="index">HOME</a></li>
+										<li><a href="<?php echo base_url()?>index">HOME</a></li>
 										<hr />
-										<li><a href="guide">GUIDE</a></li>
+										<li><a href="<?php echo base_url()?>guide">GUIDE</a></li>
 												<hr />
-												<li><a href="knowledge">KNOWLEDGE</a></li>
+												<li><a href="<?php echo base_url()?>knowledge">KNOWLEDGE</a></li>
 												<hr />
-												<li><a href="contactus">CONTACT</a></li>
+												<li><a href="<?php echo base_url()?>contactus">CONTACT</a></li>
 												<hr />
-												<li><a href="contactus">SIGN UP</a></li>
+												<li><a href="<?php echo base_url()?>contactus">SIGN UP</a></li>
 					<hr />
 						
 					<center>
 						<div style="cursor: pointer;" onclick="hideMenu()">
-						<img src="images/arrow-up-01-16.png" width="24" height="24"
+						<img src="<?php echo base_url()?>images/arrow-up-01-16.png" width="24" height="24"
 								border="0" alt="">
 						</div>
+	
 					</center>
 				</div>
 			</section>
 		</div>
 	</div>
+	<script>
+				function showMenu() {
+					document.getElementById('menu-small').style.display = "block";
+				}
+				function hideMenu() {
+					document.getElementById('menu-small').style.display = "none";
+				}
+  	</script>

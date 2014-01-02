@@ -19,7 +19,7 @@
       
         <li class="name">
           <h1>
-           <a href="index.html"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+           <a href="index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
           </h1>	  
 		</li>
 		<div class="icon-profile" >

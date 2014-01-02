@@ -26,7 +26,7 @@
 		</div>
 		<div class="large-3 columns">
 			
-			<input type="text" id=startdate name="startdate" />
+			<input type="text" id=startdate name="startdate" placeholder="startdate" />
 			<?php echo  form_error('startdate','<font color="error">');?>
 		
 		</div>
@@ -35,7 +35,7 @@
 		</div>
 		<div class="large-3 columns">
 			
-			<input type="text" id="enddate" name="enddate" />
+			<input type="text" id="enddate" name="enddate" placeholder="enddate"/>
 			<?php echo  form_error('enddate','<font color="error">');?>
 			
 		</div>	
@@ -49,10 +49,7 @@
         	$animated = "blind";
 
         	$(document).ready(function(){
-    			$("#startdate").datepicker({
-    			  	showOn: "button",
-          	      	buttonImage: "<?php echo base_url();?>images/calendar.gif",
-          	      	buttonImageOnly: true,
+    			$("#startdate").datepicker({ 	
        			 	numberOfMonths: 1,
         		 	onSelect: function(selected){ 
             		$("#startdate").datepicker( "option", "dateFormat", $dateformat );    		 	            		 	
@@ -60,9 +57,6 @@
         		}
     		});
     			$("#enddate").datepicker({
-    				showOn: "button",
-          	      	buttonImage: "<?php echo base_url();?>images/calendar.gif",
-          	      	buttonImageOnly: true,
        				numberOfMonths: 1,
        				onSelect: function(selected) {
            			$("#enddate").datepicker( "option", "dateFormat", $dateformat );	
@@ -76,8 +70,10 @@
 		<hr />
 	</div>
 	<div class="row">
+		<center>
  				<input type="submit" value="Create" class="button"/>
- 				<a href="<?php echo base_url();?>main" class="button alert">Cancel</a>	
+ 				<a href="<?php echo base_url();?>main" class="button alert">Cancel</a>
+ 		</center>	
 	</div>
 </form>
 </div>

@@ -67,7 +67,8 @@
 }
 .signin-box {
   margin-top: 50px;
-  width:400px;
+  /*width:400px;*/
+  float:center !important;
   height: auto;
   background-color:white;
   border-radius:5px;
@@ -107,19 +108,20 @@
 
 .search-box {
   position: absolute;
-  left: 200px;
-  top: 8px;
+  left: 190px;
+  top: 15px;
 }
 .search-icon {
   position: absolute;
-  left: 375px;
-  top: 8px;
+  left: 360px;
+  top: 15px;
   cursor: pointer;
 }
 .icon-profile {
   float: right;
   cursor: pointer;
-  margin-right: 8px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 .notifications {
   margin-right: 40px !important;
