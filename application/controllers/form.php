@@ -9,6 +9,42 @@ class Form extends CI_Controller {
 		//$this->load->view('form/signin');
 	}
 	
+	public function admin(){
+		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			//$this->load->view('manuindex');
+			$this->load->view('form/admin');
+		}
+		else
+		{
+				
+			$signin['email']  = $this->input->post('email');
+			$signin['pwd'] = $this->input->post('password');
+				
+			$data = $this->Admin_model->checkSignIn($signin);
+				
+			if ($data) {
+
+				$this->Sess->setsession($data['login']);
+		
+				redirect('/admin','refesh');
+			}else{
+				//$this->load->view('manuindex');
+				$this->load->view('form/admin');
+			}
+		
+		}
+		
+	}
+	
 	function signin() {
 		
 		//$this->load->library('session');

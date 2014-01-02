@@ -8,10 +8,12 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{	
-		
+		if ($this->session->userdata('user_id')==null) {
+			redirect('form/admin','refesh');
+		}else{
 		$data = $this->Admin_model->getuser();
-		
 		$this->load->view("admin/adminindex",$data);
+		}
 	}
 	
 	public function del($id)

@@ -12,9 +12,11 @@ class User_model extends CI_Model
 		
 		if ($rs->num_rows() > 0){			
 			$data['login'] = $rs->result_array();
+			$this->session->set_flashdata('signin', '');
 			return $data;
 		}else{
 			$data = false;
+			$this->session->set_flashdata('signin', 'Email or Password is invalid!!');
 			return $data;
 		}
 	

@@ -5,10 +5,26 @@ class Admin_model extends CI_Model
 	{
 		parent::__construct();
 	}
+	
+	public function checkSignIn($signin)
+	{
+		$rs = $this->db->get_where('tb_user',array('EMAIL'=>$signin['email'],'PASSWORD'=>$signin['pwd'],'STATUS'=>'A'));
+	
+		if ($rs->num_rows() > 0){
+			$data['login'] = $rs->result_array();
+			$this->session->set_flashdata('signin', '');
+			return $data;
+		}else{
+			$data = false;
+			$this->session->set_flashdata('signin', 'Email or Password is invalid!!');
+			return $data;
+		}
+	
+	}
 
 	public function getuser(){
 		
-		$sql="select*from tb_user order by UID asc";
+		$sql="select*from tb_user where STATUS != 'A' order by UID asc";
 		
 		$rs=$this->db->query($sql);
 		

@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>SOSadministration</title>
+<title>SOSsystem Administration</title>
 
 <link rel="stylesheet" href="<?php echo base_url();?>css/admincss.css">
 <link rel="shortcut icon" href="images/soss.ico" />
@@ -15,7 +15,7 @@
 		<div>
 			<div">
 				<div style="float: left;">
-					<img alt="adminlogo" src="../images/sos_logo_tran.png">
+					<img alt="adminlogo" src="<?php echo base_url();?>/images/sos_logo_tran.png">
 				</div>
 				<div>
 					<h2 style="color: #fff;">Administration</h2>
@@ -43,6 +43,7 @@
 			<li><a href="javascript:vd()">User Management</a></li>
 			<li><a href="javascript:vd()">Guide Management</a></li>
 			<li><a href="javascript:vd()">Knowledge Manament</a></li>
+			<li><a href="<?php echo base_url()?>session/signout">Sign Out</a></li>
 
 		</ul>
 		<!-- TAB USER -->
@@ -58,6 +59,7 @@
 						<th>Name</th>
 						<th>Phone</th>
 						<th>Status</th>
+						<th>Set </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,9 +75,11 @@
 			echo "<td>" . $r ['NAME'] . "</td>";
 			echo "<td>" . $r ['PHONE'] . "</td>";
 			echo "<td>" . $r ['STATUS'] . "</td>";
+			if ($r ['STATUS'] == 'Y') {
+				echo "<td>" . anchor ( "admin/del/" . $r ['UID'], "Non-Active" ) . "</td>";
+			}else
+			echo "<td>" . anchor ( "admin/edit/" . $r ['UID'], "Active" ) . "</td>";
 			
-			echo "<td>" . anchor ( "admin/edit/" . $r ['UID'], "แก้ไข" ) . "</td>";
-			echo "<td>" . anchor ( "admin/del/" . $r ['UID'], "ลบ" ) . "</td>";
 			echo "</tr>";
 			$no++;
 		}
