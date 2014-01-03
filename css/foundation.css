@@ -67,12 +67,19 @@
 }
 .signin-box {
   margin-top: 50px;
-  /*width:400px;*/
   float:center !important;
   height: auto;
   background-color:white;
   border-radius:5px;
   box-shadow: 5px 5px 15px #7A7A7A;
+}
+.signup-box {
+  box-shadow: 5px 5px 10px #a2a2a2;
+  float:center !important;
+  height: auto;
+  background-color:white;
+  border-radius:5px;
+  margin-top: 50px;
 }
 .createproject-box {
   margin-top: 50px;
@@ -91,14 +98,7 @@
 	border-radius: 5px;
 	}
 	
-.signup-box {
-  box-shadow: 5px 5px 10px #a2a2a2;
-  position: absolute !important;
-  background-color:white;
-  border-radius:5px;
-  top:85px;
-  left: 345px;
-}
+
 
 	.signup-box  .left{
 	margin-left: 20px;
