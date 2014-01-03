@@ -1,6 +1,11 @@
 <?php
 class Form extends CI_Controller {
 	
+	public function __construct() {
+		parent::__construct();
+		$this->load->library('encrypt');
+	}
+	
 	
 
 	function index()
@@ -64,7 +69,8 @@ class Form extends CI_Controller {
 		{
 			
 			$signin['email']  = $this->input->post('email');
-			$signin['pwd'] = $this->input->post('password');
+			$hashPassword = $this->encrypt->sha1($this->input->post('password'));
+			$signin['pwd'] = $hashPassword;
 			
 			$data = $this->User_model->checkSignIn($signin);
 			
@@ -85,7 +91,7 @@ class Form extends CI_Controller {
 	function signup() {
 		
 		//$this->load->view('form/signup');
-		
+		$this->load->library('encrypt');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -101,8 +107,9 @@ class Form extends CI_Controller {
 		}
 		else
 		{
-			$regis['email']=$this->input->post('email');
-			$regis['password']=$this->input->post('password');
+			$regis['email']=$this->input->post('email');		
+			$hashPassword = $this->encrypt->sha1($this->input->post('password'));
+			$regis['password']=$hashPassword;
 			$regis['name']=$this->input->post('name');
 			$regis['phone']=$this->input->post('phone');
 			
