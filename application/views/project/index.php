@@ -11,13 +11,13 @@
 						</a>
 				</div>
 				<div class="large-4 columns">
-						<a href="document.html">
+						<a href="<?php echo base_url();?>documents/index/<?php echo $pid;?>">
 						<center><img src="<?php echo base_url()?>images/documenter.png" width="128" height="128" border="0" alt=""></center>
 						<center><h6>Document</h6></center>
 						</a>
 				</div>
 				<div class="large-4 columns">
-						<a href="plan.html">
+						<a href="<?php echo base_url();?>plan/index/<?php echo $pid;?>">
 						<center><img src="<?php echo base_url()?>images/calendarplan.png" width="128" height="128" border="0" alt=""></center>
 						<center><h6>Plan</h6></center>
 						</a>
