@@ -43,11 +43,11 @@
 					echo "<tr>";
 					echo "<td align='center'>$no<input type='hidden' name='uid[]' value=".$mb['UID']." /></td>";
 					echo "<td>"  .$mb['NAME'] ."</td>";
-// 					if (empty($mb['RID'])|$mb['RID']==0) {
-// 						echo "<td>".form_dropdown('role[1]', $roleOption, 'null')."</td>";
-// 					}else{
+ 					if ($mb['RID']==5) {
+ 						echo "<td>".form_label('Project Manager','role['.$mb['UID'].']')."<input type='hidden' name='pm' value=".$mb['UID']."></td>";
+ 					}else{
 						echo "<td>".form_dropdown('role['.$mb['UID'].']', $roleOption, $mb['RID'])."</td>";
-					//}
+					}
 					
 					
 					echo "<td class='small alert button'>".anchor ( "member/del/" . $mb['TID'].'/'.$mb['PID'], 'Retire'  )."</td>";

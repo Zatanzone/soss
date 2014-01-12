@@ -4,7 +4,7 @@ class Member extends CI_Controller
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Member_model');
-		$this->load->model('Role_model');
+	//	$this->load->model('Role_model');
 		$this->load->model('Project_model');
 	}
  
@@ -72,12 +72,18 @@ class Member extends CI_Controller
 	}
 	
 	public function setRole(){
+		
 		 foreach($_POST['uid'] as $val )
 		{
-			
+			if($val == $_POST['pm']){
+				$post = array(
+ 				'RID' => '5',
+ 			);
+			}else{
  			$post = array(
  				'RID' => $_POST['role'][$val],
  			);
+			}
  			$this->db->where('PID', $_POST['pid']);
  			$this->db->where('UID', $val);
  			$this->db->update('tb_team', $post);

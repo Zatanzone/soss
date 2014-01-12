@@ -32,7 +32,8 @@ class Form extends CI_Controller {
 		{
 				
 			$signin['email']  = $this->input->post('email');
-			$signin['pwd'] = $this->input->post('password');
+			$hashPassword = $this->encrypt->sha1($this->input->post('password'));
+			$signin['pwd'] = $hashPassword;
 				
 			$data = $this->Admin_model->checkSignIn($signin);
 				
