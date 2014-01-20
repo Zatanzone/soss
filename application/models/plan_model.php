@@ -12,7 +12,9 @@ class Plan_model extends CI_Model{
 		$this->db->where('PID', $pid);
 		$query = $this->db->get('tb_plan');
 		
+		return $query->result_array();
 		//echo $this->db->last_query();
+		//exit();
 	}
 	
 	public function getTaskList($pid){

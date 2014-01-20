@@ -13,8 +13,9 @@
 				<div class="panel">
 					<h5>Add task</h5><hr />
 						<div class = "row">
+						<input type="hidden" name="pid" id ="pid" value="<?php echo $pid;?>">
 							<?php 
-							echo form_hidden('pid',$pid);
+						
 						/* 	$data = array(
 									'name'        => 'username',
 									'id'          => 'username',
@@ -82,11 +83,21 @@
 			echo "<td>" . $r ['TASK'] . "</td>";
 			echo "<td>" . $r ['STARTDATE'] . "</td>";
 			echo "<td>" . $r ['ENDDATE'] . "</td>";
-			echo "<td>" . form_input(array('name'=>'taskname','value'=>$r ['PROGRESS'],'size'=>'30')) ."</td>";
+			//echo "<td>" . form_input(array('name'=>'taskname','value'=>$r ['PROGRESS'],'size'=>'30')) ."</td>";
+			echo "<td><div id= 'progressbar'></div></td>";
 			$no++;
 		}
 	}
 	?>
+	
+	<script>
+  $(function() {
+    $( "#progressbar" ).progressbar({
+      value: 37
+    });
+  });
+  </script>
+  
 </tbody>
 </table>
 </div>
@@ -99,16 +110,60 @@
         	$animated = "blind";
 
         	$(document).ready(function(){
+
+				pid = $("#pid").val();
+            	
     			$("#startdate").datepicker({ 	
+        			
        			 	numberOfMonths: 1,
         		 	onSelect: function(selected){ 
+					date = $("#startdate").val();
+					res = false;
+        		 		var postData = {
+        		 			    "pid" : pid,
+        		 			    "date" : date
+        		 			};
+
+        		 	 	$.ajax({
+        		 			  type: "POST",
+        		 			  url: "../checkLastTask",
+        		 			  data: postData,
+        		 			  success: function(res){
+        		 				if(res==0){
+										alert('Your start date is less than last task of project.'+'\n'+' Please seleced the other date.');
+										$("#startdate").val('');
+            		 				} 
+        		 				}
+        		 			}); 
+					          		 					 		
             		$("#startdate").datepicker( "option", "dateFormat", $dateformat );    		 	            		 	
 	         		$("#enddate").datepicker("option","minDate",  selected);		
         		}
+    			
     		});
     			$("#enddate").datepicker({
        				numberOfMonths: 1,
        				onSelect: function(selected) {
+
+       					date = $("#enddate").val();
+    					res = false;
+            		 		var postData = {
+            		 			    "pid" : pid,
+            		 			    "date" : date
+            		 			};
+
+            		 	 	$.ajax({
+            		 			  type: "POST",
+            		 			  url: "../lastDate",
+            		 			  data: postData,
+            		 			  success: function(res){
+            		 				if(res==0){
+    										alert('Your end date is more than project duration .'+'\n'+' Please seleced the other date.');
+    										$("#enddate").val('');
+                		 				} 
+            		 				}
+            		 			}); 
+           				
            			$("#enddate").datepicker( "option", "dateFormat", $dateformat );	
            			$("#startdate").datepicker("option","maxDate", selected);
         		}

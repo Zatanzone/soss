@@ -18,13 +18,51 @@ class Plan extends CI_Controller
 			$pro['projectEdate']  = $pj['ENDDATE'];
 		}
 		
-		$task = $this->Plan_model->findLastTask($pid);
+		
 		$pro['pid'] = $pid;
 		
 		$this->load->view('projectheader');
 		$this->load->view('plan/index',$pro);
 		$this->load->view('projectside');
 	}
+	
+	public function checkLastTask(){
+		//echo 'checkLastTask2';
+		$task = $this->Plan_model->findLastTask($_POST['pid']);
+		foreach ($task as $ldate){
+			$lastedDate = $ldate['last_date'];
+		}
+		$date = $_POST['date'];
+		$startDate = date("Y-m-d", strtotime($date));
+		$lastDate = date("Y-m-d", strtotime($lastedDate));
+
+		if ($startDate > $lastDate)
+			$chk = true;
+		else $chk = false;
+		
+		echo $chk;
+	//	return $task;
+	}
+	
+	public function lastDate(){
+		//echo 'checkLastTask2';
+		$project = $this->Project_model->model($_POST['pid']);
+		foreach ($project as $p){
+			$lastedDate = $p['ENDDATE'];
+		}
+		$date = $_POST['date'];
+		$endDate = date("Y-m-d", strtotime($date));
+		$lastDate = date("Y-m-d", strtotime($lastedDate));
+	
+		if ($endDate > $lastDate)
+			$chk = false;
+		else $chk = true;
+	
+		echo $chk;
+		//	return $task;
+	}
+	
+	
 	
 	public function save(){
 

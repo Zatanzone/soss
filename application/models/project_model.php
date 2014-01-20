@@ -6,6 +6,12 @@ class Project_model extends CI_Model
 		parent::__construct();
 	}
 	
+	public function model($pid){
+		$query = $this->db->get_where('tb_project', array('PID' => $pid));
+		$project = $query->result_array();
+		return $project;
+	}
+	
 	public function getListMyProject($uid){
 		
 		$sql= "SELECT PID,PROJECT,datediff(ENDDATE,STARTDATE) as day 
