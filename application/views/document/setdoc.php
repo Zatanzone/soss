@@ -2,7 +2,7 @@
 	<div class="large-8 columns">
 		<h4><?php echo $name;?> ( <?php echo $role;?> )</h4><hr />
 		<?php
-			echo form_open('document/setMemberToDoc');
+			echo form_open('document/setdoc');
 				foreach ( $product as $pw) { ?>
 		<div class="row">
 		<div class="large-7 columns">
@@ -13,14 +13,10 @@
 					?>
 		</div>
 		<div class="large-5 columns">
-					<select name='tid[]'>
-									<option value ="" selected>Choose (1st)</option>
-									<?php 
-									foreach ( $member as $mb){
-									echo "<option value =".$mb['TID'].">".$mb['NAME']."</option>";
-									}
-									?>
-					</select>
+					<?php
+						echo form_dropdown('tid[]', $member,null,'style="width: 240px; height: 32px; font-size: 14px"');
+					?> 
+						
 		</div>
 		</div>
 				<?php } ?>		

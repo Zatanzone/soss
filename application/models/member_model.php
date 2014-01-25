@@ -33,4 +33,26 @@ class Member_model extends CI_Model{
 		
 	}
 	
+	Public function getMemberOption($pid)
+	{
+		$return = array();
+		
+		$this->db->select('tb_team.UID,tb_user.NAME');
+		$this->db->from('tb_team');
+		$this->db->join('tb_user', 'tb_user.UID= tb_team.UID','left');
+		$this->db->where('PID', $pid);
+		$query = $this->db->get();
+		$res = $query->result_array();
+
+		if( is_array( $res ) && count( $res ) > 0 )
+		{
+			$return[''] = 'Select Member';
+			foreach($res as $row)
+			{
+				$return[$row['UID']] = $row['NAME'];
+			}
+		}
+		return $return;
+	}
+	
 }

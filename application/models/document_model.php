@@ -49,6 +49,27 @@ class Document_model extends CI_Model
 			return $product;
 	}
 	
+	Public function getMemberOption($pid)
+	{
+		$return = array();
+	
+		$this->db->select('tb_workproduct.WID,tb_document.DOCUMENT');
+		$this->db->from('tb_workproduct');
+		$this->db->join('tb_document', 'tb_document.DID= tb_workproduct.DID','left');
+		$this->db->where('PID', $pid);
+		$query = $this->db->get();
+		$res = $query->result_array();
+	
+		if( is_array( $res ) && count( $res ) > 0 )
+		{
+			$return[''] = 'Select Document';
+			foreach($res as $row)
+			{
+				$return[$row['WID']] = $row['DOCUMENT'];
+			}
+		}
+		return $return;
+	}
 		
 }
 	

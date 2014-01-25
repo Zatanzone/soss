@@ -39,11 +39,7 @@ class Document extends CI_Controller {
 			$pro['member']=$member;
 			$pro['checkPM']=$checkPM;
 			if (!$checkDoc) {
-				
-				$this->load->view('projectheader');
-				$this->load->view('document/show',$pro);
-				$this->load->view('projectside');
-				
+					redirect('document/create/'.$pro['pid']);
 			}else {
 				
 				$this->load->view('projectheader');
@@ -61,7 +57,7 @@ class Document extends CI_Controller {
 		}
 		$this->load->library('form_validation');
 		
-		$this->form_validation->set_rules('did[]', 'did', 'required');
+		$this->form_validation->set_rules('did[]', 'did', 'required|is_unique[tb_workproduct.DID]');
 		
 		if ($this->form_validation->run() == FALSE)  
 		{
@@ -75,20 +71,31 @@ class Document extends CI_Controller {
 			$creatp['pid'] = $pid;
 				
 			$this->Document_model->create($creatp);
-			$product = $this->Document_model->search($pid);
-			$member = $this->Member_model->findByProject($pid);
-			$pro['product']=$product;
-			$pro['member']=$member;
 
-			$this->load->view('projectheader');
-			$this->load->view('document/setdoc',$pro);
-			$this->load->view('projectside');
+			redirect('document/setdoc/'.$pro['pid']);
 			
 		}
 		
 	}
 	
-	public function setMemberToDoc(){
+	public function setDoc($pid){
+		
+		$project = $this->Project_model->getProject($pid);
+		foreach ($project as $pj){
+			$pro['name']  = $pj['PROJECT'];
+			$pro['role']  = $pj['ROLE'];
+			$pro['pid']  = $pj['PID'];
+		}
+		
+		$product = $this->Document_model->search($pid);
+		$member = $this->Member_model->getMemberOption($pid);
+		$pro['product']=$product;
+		$pro['member']=$member;
+		
+		$this->load->view('projectheader');
+		$this->load->view('document/setdoc',$pro);
+		$this->load->view('projectside');
+		if(isset($_POST['did'])){
 		$i=0;
 		foreach($_POST['did'] as $val)
 		{
@@ -103,6 +110,8 @@ class Document extends CI_Controller {
 			$i=$i+1;
 		}
 		redirect("document/index/".$_POST['pid'],"refresh");
+		}
+		
 	}
 	
 	
