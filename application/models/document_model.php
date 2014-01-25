@@ -49,7 +49,7 @@ class Document_model extends CI_Model
 			return $product;
 	}
 	
-	Public function getMemberOption($pid)
+	Public function getDocOption($pid)
 	{
 		$return = array();
 	
