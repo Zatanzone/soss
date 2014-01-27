@@ -9,7 +9,7 @@ class Project extends CI_Controller{
 	public function index($pid){
 		
 		$project = $this->Project_model->getProject($pid);
-
+		
 		//print_r($project);
 		foreach ($project as $p){
 			$data['pid'] = $p['PID'];

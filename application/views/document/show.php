@@ -6,6 +6,16 @@
 			<div class="row">
 				<div class="large-12 columns">
 						<div class="large-6 columns">
+							<input type="checkbox" id="checkAll"> <b>Check All</b>
+						</div>
+						<div class="large-6 columns">
+							&nbsp
+						</div>
+						<div class="large-6 columns">
+							&nbsp
+						</div>
+						
+						<div class="large-6 columns">
 								<input type="checkbox" name="did[]" id="did[]" value="1">  Acceptance Record 
 						</div>
 						<div class="large-6 columns">
@@ -68,8 +78,18 @@
 						<div class="large-6 columns">
 								<input type="checkbox" name="did[]" id="did[]" value="21">  Validation Results 
 						</div>
+						<div class="large-6 columns">	
+						
+						</div>
 				</div>
+				
 			</div>
 			<hr />
+			<script>
+			$("#checkAll").click(function () {
+			     $('input:checkbox').not(this).prop('checked', this.checked);
+			 });
+			</script>
+			
 			<center><p><div><input type="submit" value="Next" class="button"/></div></p></center>
 		</div>
