@@ -33,5 +33,20 @@ class Plan_model extends CI_Model{
 			else return false;
 		}
 	}
+	
+	public function getDocName($did){
+		$this->db->select('tb_document.DOCUMENT');
+		$this->db->from('tb_workproduct');
+		//$this->db->join('tb_workproduct', 'tb_workproduct.WID = tb_plan.WID','left');
+		$this->db->join('tb_document', 'tb_document.DID = tb_workproduct.DID','left');
+		$this->db->where('WID', $did);
+		//$query = $this->db->get('tb_plan');
+		$query = $this->db->get();
+		$rs = $query->result_array();
+		foreach ($rs as $r){
+			$name = $r['DOCUMENT'];
+		}
+		return $name;
+	}
 
 }
