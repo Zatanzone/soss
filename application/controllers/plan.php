@@ -5,12 +5,18 @@ class Plan extends CI_Controller
 		parent::__construct();
 		$this->load->model('Project_model');
 		$this->load->model('Plan_model');
-
-	}
+		$this->load->model('Member_model');
+		$this->load->model('Document_model');
+		}
+		
+	private $_pid;
 
 	public function index($pid){
 		$project = $this->Project_model->getProject($pid);
 		$pro['task'] = $this->Plan_model->getTaskList($pid);
+		$pro['num'] = $this->Plan_model->countTask($pid);
+		$this->_pid = $pid;
+
 		foreach ($project as $pj){
 			$pro['name']  = $pj['PROJECT'];
 			$pro['role']  = $pj['ROLE'];
@@ -18,12 +24,13 @@ class Plan extends CI_Controller
 			$pro['projectEdate']  = $pj['ENDDATE'];
 		}
 		
-		
+		$pro['memberoption'] = $this->Member_model->getMemberOption($pid);
+		$pro['docoption'] = $this->Document_model->getDocOption($pid);
 		$pro['pid'] = $pid;
 		
 		$this->load->view('projectheader');
 		$this->load->view('plan/index',$pro);
-		$this->load->view('projectside');
+	//	$this->load->view('projectside');
 	}
 	
 	public function checkLastTask(){
@@ -45,7 +52,6 @@ class Plan extends CI_Controller
 	}
 	
 	public function lastDate(){
-		//echo 'checkLastTask2';
 		$project = $this->Project_model->model($_POST['pid']);
 		foreach ($project as $p){
 			$lastedDate = $p['ENDDATE'];
@@ -79,21 +85,100 @@ class Plan extends CI_Controller
 				'DESCRIPTION'=>$_POST['description'],
 				'STARTDATE'=>$_POST['start'],
 				'ENDDATE'=>$_POST['end'],
-				'PID'=>$_POST['pid']
+				'PID'=>$_POST['pid'],
+				'RES'=>$_POST['member']
 			);
 			$success = $this->Plan_model->save($data);
 			if ($success) {
 				redirect('plan/index/'.$_POST['pid'],'refesh');
 			//	$this->index($_POST['pid']);
-			}else{
-				
 			}
 		}
+	}
+	public function savedoc(){
 		
 		
-	
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('doc', 'Document', 'required');
+		$this->form_validation->set_rules('startdoc', 'Start Date', 'required');
+		$this->form_validation->set_rules('enddoc', 'End Date', 'required');
 		
 		
+		if ($this->form_validation->run() == FALSE){
+			$this->index($_POST['pid']);
+		}else{
+			$data = array(
+					'TASK'=>$this->Plan_model->getDocName($_POST['doc']),
+					'STARTDATE'=>$_POST['startdoc'],
+					'ENDDATE'=>$_POST['enddoc'],
+					'PID'=>$_POST['pid'],
+					'IS_DOC'=>$_POST['doc']
+			);
+			$success = $this->Plan_model->save($data);
+			if ($success) {
+				redirect('plan/index/'.$_POST['pid'],'refesh');
+				//	$this->index($_POST['pid']);
+			}
+		}
 	}
 	
+	public function edit($plid){
+		
+		$task= $this->Plan_model->findByPk($plid);
+		foreach ($task as $pj){
+			$trk['pid'] = $pj['PID'];
+			$trk['task'] = $pj['TASK'];
+			$trk['des']=$pj['DESCRIPTION'];
+			$trk['taskstart']=$pj['STARTDATE'];
+			$trk['taskend']=$pj['ENDDATE'];
+			$trk['res']=$pj['RES'];
+			$trk['is_doc']=$pj['IS_DOC'];
+		}
+		/* 
+			if ($trk['is_doc']!=0) 
+						$trk['did'] = $this->Plan_model->getDocId($trk['is_doc']); */
+				 
+	
+		$project = $this->Project_model->getProject($trk['pid']);
+		foreach ($project as $pj){
+			$trk['role']=$pj['ROLE'];
+			$trk['name']  = $pj['PROJECT'];
+			$trk['projectSdate']  = $pj['STARTDATE'];
+			$trk['projectEdate']  = $pj['ENDDATE']; 
+		}
+		
+			$trk['memberoption'] = $this->Member_model->getMemberOption($trk['pid']);
+			$trk['docoption'] = $this->Document_model->getDocOption($trk['pid']);
+			$trk['plid'] = $plid;
+
+			$this->load->view('projectheader');
+			$this->load->view('plan/editplan',$trk);
+	}
+	
+	public function update(){
+	
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('taskname', 'Task Name', 'required');
+		$this->form_validation->set_rules('start', 'Start Date', 'required');
+		$this->form_validation->set_rules('end', 'End Date', 'required');
+	
+		if ($this->form_validation->run() == FALSE){
+			$this->index($_POST['pid']);
+		}else{
+			$data = array(
+					'TASK'=>$_POST['taskname'],
+					'DESCRIPTION'=>$_POST['description'],
+					'STARTDATE'=>$_POST['start'],
+					'ENDDATE'=>$_POST['end'],
+					'PID'=>$_POST['pid'],
+					'RES'=>$_POST['member']
+			);
+			$success = $this->Plan_model->update($data,$_POST['plid']);
+			if ($success) {
+				redirect('plan/index/'.$_POST['pid'],'refesh');
+				//	$this->index($_POST['pid']);
+			}
+		}
+	}
+		
 }

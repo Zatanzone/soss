@@ -8,19 +8,19 @@
 	<div class="large-12 columns">
 	<h3>Project Plan</h3>
 	
-	<a class="button" id="addplan">Add Task</a>
-	<a class="button" id="adddoc">Document Task</a>
-	
-	<?php echo form_open('plan/save')?>
+<!-- Update Normal Task -->	
+	<?php if($is_doc ==0){ ?>
+	<?php echo form_open('plan/update')?>
 			<div id="newtask"  >
 				<div class="panel">
-					<h5>Add task</h5><hr />
+					<h5>Edit task :: <?php echo $task;?> </h5><hr />
 						<div class = "row">
 						<input type="hidden" name="pid" id ="pid" value="<?php echo $pid;?>">
+						<input type="hidden" name="plid" id ="plid" value="<?php echo $plid;?>">
 							<?php 
 							echo form_error('taskname','<font color="error">');
 							echo form_label('Task Name', 'taskname',array('style'=>'color: #303030;'));
-							echo form_input(array('name'=>'taskname','value'=>'','maxlength'=>'100','size'=>'50','style'=>'width:80%'))
+							echo form_input(array('name'=>'taskname','value'=>$task,'maxlength'=>'100','size'=>'50','style'=>'width:80%'))
 							?>
 						</div>
 						<div class="row">
@@ -28,7 +28,7 @@
 						//$string = 'Here is a string containing "quoted" text.';
 			
 						echo form_label('Task Description', 'taskname',array('style'=>'color: #303030;'));
-						echo form_textarea(array('name'=>'description','rows'=>10,'cols'=>50,'style'=>'width:80%'));
+						echo form_textarea(array('name'=>'description','value'=>$des,'rows'=>10,'cols'=>50,'style'=>'width:80%'));
 						?>
 						</div>
 						<div class ="row">
@@ -36,9 +36,9 @@
 							echo form_error('start','<font color="error">');
 							echo form_error('end','<font color="error">');
 							echo form_label('Duration', 'duration',array('style'=>'color: #303030;')); 
-							echo form_input(array('name'=>'start','id'=>'startdate','value'=>'','size'=>'50','style'=>'width:25%; float: left;'));
+							echo form_input(array('name'=>'start','id'=>'startdate','value'=>$taskstart,'size'=>'50','style'=>'width:25%; float: left;'));
 
-							echo form_input(array('name'=>'end','id'=>'enddate','value'=>'','size'=>'50','style'=>'width:25%'));
+							echo form_input(array('name'=>'end','id'=>'enddate','value'=>$taskend,'size'=>'50','style'=>'width:25%'));
 						?>
 						
 						</div>
@@ -46,14 +46,18 @@
 						<div class="row">
 						<?php 
 						echo form_label('	Responsible', 'member',array('style'=>'color: #303030;'));
-						echo form_dropdown('member', $memberoption,null,'style="width: 240px; height: 32px; font-size: 14px"');?>
+						echo form_dropdown('member', $memberoption,$res,'style="width: 240px; height: 32px; font-size: 14px"');?>
 						
 						</div>
 						
-						<input type="submit" class="button success" value="Create">
+						<input type="submit" class="button success" value="Save">
 						<button class="alert" onclick="hideNewproject()">Cancel</button>
 				</div>
 			</div>
+		<?php echo form_close();?>
+<!-- End Update Normal Task -->
+		<?php }else{?>
+		
 		<?php echo form_close();?>
 	
 		<div id="doctask">
@@ -64,10 +68,10 @@
 					<input type="hidden" name="pid" id ="pid" value="<?php echo $pid;?>">
 					<?php 
 					echo form_label('	Select Document', 'doc',array('style'=>'color: #303030;'));
-					echo form_dropdown('doc', $docoption,null,'style="width: 240px; height: 32px; font-size: 14px"');
+					echo form_dropdown('doc', $docoption,$is_doc,'style="width: 240px; height: 32px; font-size: 14px"');
 					echo form_label('Duration', 'duration',array('style'=>'color: #303030;'));
-					echo form_input(array('name'=>'startdoc','id'=>'docstartdate','value'=>'','size'=>'50','style'=>'width:25%; float: left;'));
-					echo form_input(array('name'=>'enddoc','id'=>'docenddate','value'=>'','size'=>'50','style'=>'width:25%'));
+					echo form_input(array('name'=>'startdoc','id'=>'docstartdate','value'=>$taskstart,'size'=>'50','style'=>'width:25%; float: left;'));
+					echo form_input(array('name'=>'enddoc','id'=>'docenddate','value'=>$taskend,'size'=>'50','style'=>'width:25%'));
 					?>
 				</div>
 				<input type="submit" class="button success" value="Save">		
@@ -77,60 +81,11 @@
 				</div>
 		</div>
 		
+		<?php }?>
 	</div>
 </div>
 
-	<?php echo anchor ( "plan/edit/" . $pid, "Edit Plan",array('class' => 'button','style'=>'float: right') );?>
-	
-<div>
-			<table border="1" class="tableuser" width="100%">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>Task Name</th>
-						<th>Start</th>
-						<th>End</th>
-						<th>Progress(%)</th>
-						<th>Edit</th>
-					</tr>
-				</thead>
-				<tbody>
-<?php
-	if (count ( $task ) == 0) { 
-		echo "<tr><td colspan = '4' align='center'> -- no task --</td></tr>";
-	} else {
-		$no = 1;
-		
-		foreach ( $task as $r ) {
-			echo "<tr  >";
-			echo "<td width='2%' align='center'>$no</td>";
-			echo "<td width='*'>" . $r ['TASK'] . "</td>";
-			echo "<td width='15%'>" .$r ['STARTDATE']. "</td>";
-			echo "<td width='15%'>" .$r ['ENDDATE']. "</td>";
-			echo "<td width='10%'>" .$r ['PROGRESS'] ."</td>";
-			echo "<td>" . anchor ( "plan/edit/" . $r ['PLID'], "Edit" ) . "</td>";
-			$no++;
-		}
-		
-		
-	}
-	?>
-	
-	
-	<script>
-  $(function() {
-    $( "#progressbar" ).progressbar({
-      value: 37
-    });
-  });
-  </script>
-  
-</tbody>
-</table>
-<input type="hidden" name="num" id ="num" value="<?php echo $no-1;?>">
-</div>
-</div>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
   		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
@@ -143,10 +98,10 @@
         	$(document).ready(function(){
 
         		$('#canceldoc').click(function(){
-      		
+
       				$('#doctask').css("display","none");
       	  			});
-        	
+
             		$("#addplan").click( function(){
 						$('#newtask').css("display","none");
 					});
@@ -264,29 +219,6 @@
            			$("#docstartdate").datepicker("option","maxDate", selected);
         		}
     		});  
-			num = $("#num").val();
-			for(var i=1;i<=num;i++){
-					$("#editstartdate"+i).datepicker({ 	
-        			
-       			 	numberOfMonths: 1,
-        		 	onSelect: function(selected){ 
-						date = $("#editstartdate"+i).val();
-            			$("#editstartdate"+i).datepicker( "option", "dateFormat", $dateformat );    		 	            		 	
-	         			$("#editenddate"+i).datepicker("option","minDate",  date);		
-        			}
-    				});
-    				
-					$("#editenddate"+i).datepicker({ 	
-	       			 	numberOfMonths: 1,
-	        		 	onSelect: function(selected){ 
-							date = $("#editenddate"+i).val();
-	            			$("#editenddate"+i).datepicker( "option", "dateFormat", $dateformat );    		 	            		 	
-		         			$("#editstartdate"+i).datepicker("option","maxDate",  selected);		
-	        			}
-	    				});
-    				
-				}
-			
-        		
-		});
- </script>
+
+        	});
+        	 </script>
