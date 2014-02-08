@@ -1,13 +1,13 @@
 <div class="row">
 <div class="large-12 columns">
 	<div class="large-12 columns">
+	
 	<h4><?php echo $name;?> <br>( <?php echo $role;?> )</h4>
 		<hr />
-		
+
 		
 	<div class="large-12 columns">
 	<h3>Project Plan</h3>
-	
 <!-- Update Normal Task -->	
 	<?php if($is_doc ==0){ ?>
 	<?php echo form_open('plan/update')?>

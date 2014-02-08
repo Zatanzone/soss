@@ -61,7 +61,12 @@ class Project_model extends CI_Model
 	
 	public function  getProject($pid){
 		
-		$this->db->select('*');
+		$sel = array( // set attributes
+				'*',
+				'datediff(ENDDATE,STARTDATE) as duration',
+		);
+		
+		$this->db->select($sel);
 		$this->db->from('tb_project');
 		$this->db->join('tb_team', 'tb_team.PID = tb_project.PID');
 		$this->db->join('tb_role', 'tb_role.RID = tb_team.RID');

@@ -67,9 +67,7 @@ class Plan extends CI_Controller
 		echo $chk;
 		//	return $task;
 	}
-	
-	
-	
+		
 	public function save(){
 
 		$this->load->library('form_validation');
@@ -125,6 +123,7 @@ class Plan extends CI_Controller
 	public function edit($plid){
 		
 		$task= $this->Plan_model->findByPk($plid);
+		
 		foreach ($task as $pj){
 			$trk['pid'] = $pj['PID'];
 			$trk['task'] = $pj['TASK'];
@@ -140,6 +139,7 @@ class Plan extends CI_Controller
 				 
 	
 		$project = $this->Project_model->getProject($trk['pid']);
+		//print_r($project);
 		foreach ($project as $pj){
 			$trk['role']=$pj['ROLE'];
 			$trk['name']  = $pj['PROJECT'];
@@ -180,5 +180,28 @@ class Plan extends CI_Controller
 			}
 		}
 	}
+
+	public function show($pid){
+		$project = $this->Project_model->getProject($pid);
+		$pro['task'] = $this->Plan_model->getTaskList($pid);
+		$pro['num'] = $this->Plan_model->countTask($pid);
+		$this->_pid = $pid;
+
+		foreach ($project as $pj){
+			//$pro['duration'] = $pj['day'];
+			$pro['name']  =  $pj['PROJECT'];
+			$pro['role']  = $pj['ROLE'];
+			$pro['projectSdate']  = $pj['STARTDATE'];
+			$pro['projectEdate']  = $pj['ENDDATE'];
+			$pro['projectDura'] = $pj['duration'];
+		}
 		
+		//print_r($pro['task']);
+		
+		
+		$this->load->view('projectheader');
+		$this->load->view('plan/show',$pro);
+		
+		
+	}
 }

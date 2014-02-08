@@ -17,7 +17,16 @@ class Plan_model extends CI_Model{
 	}
 	
 	public function getTaskList($pid){
-		$query = $this->db->get_where('tb_plan', array('PID' => $pid)/*, $limit, $offset*/);
+			$sel = array( // set attributes
+			'*',
+			'datediff(ENDDATE,STARTDATE) as duration',
+		);
+		
+		$this->db->select($sel);
+		$this->db->from('tb_plan');
+		$this->db->where('PID', $pid);
+
+		$query = $this->db->get();
 		if ($query->num_rows() > 0) 
 			return $query->result_array();
 		else

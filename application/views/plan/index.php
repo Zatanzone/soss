@@ -80,7 +80,7 @@
 	</div>
 </div>
 
-	<?php echo anchor ( "plan/edit/" . $pid, "Edit Plan",array('class' => 'button','style'=>'float: right') );?>
+	<?php echo anchor ( "plan/show/" . $pid, "Plan",array('class' => 'button','style'=>'float: right') );?>
 	
 <div>
 			<table border="1" class="tableuser" width="100%">
