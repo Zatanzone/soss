@@ -2,7 +2,7 @@
 <div class="large-12 columns">
 	<div class="large-12 columns">
 	
-	<h4><?php echo $name;?> <br>( <?php echo $role;?> )</h4>
+	<h4><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4>
 		<hr />
 
 		
@@ -33,16 +33,24 @@
 						</div>
 						<div class ="row">
 						<?php 
+							$spec = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
 							echo form_error('start','<font color="error">');
 							echo form_error('end','<font color="error">');
-							echo form_label('Duration', 'duration',array('style'=>'color: #303030;')); 
+							echo form_label('Start Date'.$spec.'End Date', 'duration',array('style'=>'color: #303030;')); 
+							
 							echo form_input(array('name'=>'start','id'=>'startdate','value'=>$taskstart,'size'=>'50','style'=>'width:25%; float: left;'));
 
 							echo form_input(array('name'=>'end','id'=>'enddate','value'=>$taskend,'size'=>'50','style'=>'width:25%'));
 						?>
 						
 						</div>
-						
+						<div class ="row">
+						<?php 
+							echo form_error('progress','<font color="error">');
+							echo form_label('Task Progress', 'taskname',array('style'=>'color: #303030;'));
+							echo form_input(array('name'=>'progress','value'=>$progress,'maxlength'=>'3','size'=>'10','style'=>'width:27%'))
+							?>
+						</div>
 						<div class="row">
 						<?php 
 						echo form_label('	Responsible', 'member',array('style'=>'color: #303030;'));

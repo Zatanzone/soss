@@ -1,18 +1,19 @@
 <div class="row">
 <div class="large-12 columns">
 	<div class="large-12 columns">
-	<h4><?php echo $name;?> <br>( <?php echo $role;?> )</h4>
+	<h4><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4>
 		<hr />
 		
 		
 	<div class="large-12 columns">
 	<h3>Project Plan</h3>
 	
-	<a class="button" id="addplan">Add Task</a>
-	<a class="button" id="adddoc">Document Task</a>
+	<a class="button addplan" id="addplan">Add Task</a>
+	<a class="button adddoc" id="adddoc">Document Task</a>
+	<?php echo anchor ( "plan/show/" . $pid, "Plan",array('class' => 'button','style'=>'float: right') );?>
 	
 	<?php echo form_open('plan/save')?>
-			<div id="newtask"  >
+			<div id="newtask" style="display: none;">
 				<div class="panel">
 					<h5>Add task</h5><hr />
 						<div class = "row">
@@ -51,12 +52,12 @@
 						</div>
 						
 						<input type="submit" class="button success" value="Create">
-						<button class="alert" onclick="hideNewproject()">Cancel</button>
+						 <a class="button alert canceladd"  id="canceladd"">Cancel</a>
 				</div>
 			</div>
 		<?php echo form_close();?>
 	
-		<div id="doctask">
+		<div id="doctask" style="display:none;">
 				<div class="panel">
 				<h5>Document Task</h5>
 				<div class ="row">	
@@ -72,7 +73,7 @@
 				</div>
 				<input type="submit" class="button success" value="Save">		
 				<?php echo form_close();?>
-				<button class="alert" id="canceldoc">Cancel</button>
+				<a class="button alert canceldoc" id="canceldoc">Cancel</a>
 				
 				</div>
 		</div>
@@ -80,7 +81,7 @@
 	</div>
 </div>
 
-	<?php echo anchor ( "plan/show/" . $pid, "Plan",array('class' => 'button','style'=>'float: right') );?>
+	
 	
 <div>
 			<table border="1" class="tableuser" width="100%">
@@ -135,21 +136,29 @@
   		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
 
-  		
+  		   $(".addplan").click(function(){
+					   $("#newtask").show();
+					});
+					$(".canceladd").click(function(){
+						$("#newtask").hide();	
+			});
+		    $(".adddoc").click(function(){
+						   $("#doctask").show();
+						});
+						$(".canceldoc").click(function(){
+							$("#doctask").hide();	
+			});
   		
         	$dateformat = "yy-mm-dd";
         	$animated = "blind";
 			
         	$(document).ready(function(){
 
-        		$('#canceldoc').click(function(){
-      		
-      				$('#doctask').css("display","none");
-      	  			});
-        	
-            		$("#addplan").click( function(){
-						$('#newtask').css("display","none");
-					});
+
+        		
+
+
+        		
 
 				pid = $("#pid").val();
             	

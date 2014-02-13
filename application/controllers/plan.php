@@ -28,9 +28,13 @@ class Plan extends CI_Controller
 		$pro['docoption'] = $this->Document_model->getDocOption($pid);
 		$pro['pid'] = $pid;
 		
+		$checkPM= $this->Project_model->checkPM($pid);
+		if (!$checkPM) {
+			$this->show($this->_pid);
+		}else{
 		$this->load->view('projectheader');
 		$this->load->view('plan/index',$pro);
-	//	$this->load->view('projectside');
+		}
 	}
 	
 	public function checkLastTask(){
@@ -124,22 +128,19 @@ class Plan extends CI_Controller
 		
 		$task= $this->Plan_model->findByPk($plid);
 		
-		foreach ($task as $pj){
+		foreach ($task as $pj){  // set param for use in edit view
 			$trk['pid'] = $pj['PID'];
 			$trk['task'] = $pj['TASK'];
 			$trk['des']=$pj['DESCRIPTION'];
 			$trk['taskstart']=$pj['STARTDATE'];
 			$trk['taskend']=$pj['ENDDATE'];
 			$trk['res']=$pj['RES'];
+			$trk['progress'] = $pj['PROGRESS'];
 			$trk['is_doc']=$pj['IS_DOC'];
 		}
-		/* 
-			if ($trk['is_doc']!=0) 
-						$trk['did'] = $this->Plan_model->getDocId($trk['is_doc']); */
-				 
-	
+
 		$project = $this->Project_model->getProject($trk['pid']);
-		//print_r($project);
+		
 		foreach ($project as $pj){
 			$trk['role']=$pj['ROLE'];
 			$trk['name']  = $pj['PROJECT'];
@@ -171,6 +172,7 @@ class Plan extends CI_Controller
 					'STARTDATE'=>$_POST['start'],
 					'ENDDATE'=>$_POST['end'],
 					'PID'=>$_POST['pid'],
+					'PROGRESS'=>$_POST['progress'],
 					'RES'=>$_POST['member']
 			);
 			$success = $this->Plan_model->update($data,$_POST['plid']);
@@ -189,6 +191,7 @@ class Plan extends CI_Controller
 
 		foreach ($project as $pj){
 			//$pro['duration'] = $pj['day'];
+			$pro['pid'] = $pj['PID'];
 			$pro['name']  =  $pj['PROJECT'];
 			$pro['role']  = $pj['ROLE'];
 			$pro['projectSdate']  = $pj['STARTDATE'];
@@ -196,8 +199,12 @@ class Plan extends CI_Controller
 			$pro['projectDura'] = $pj['duration'];
 		}
 		
-		//print_r($pro['task']);
-		
+		$checkPM= $this->Project_model->checkPM($pid);
+		if (!$checkPM) {
+			$pro['pm'] = false;
+		}else{
+			$pro['pm'] = true;
+		}
 		
 		$this->load->view('projectheader');
 		$this->load->view('plan/show',$pro);
