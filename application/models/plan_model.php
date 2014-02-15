@@ -88,6 +88,5 @@ class Plan_model extends CI_Model{
 		$rs = $query->result_array();
 		
 		return $rs;
-		
 	}
 }

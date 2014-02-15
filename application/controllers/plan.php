@@ -52,7 +52,7 @@ class Plan extends CI_Controller
 		else $chk = false;
 		
 		echo $chk;
-	//	return $task;
+
 	}
 	
 	public function lastDate(){

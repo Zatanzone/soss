@@ -4,7 +4,6 @@
 	<h4><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4>
 		<hr />
 		
-		
 	<div class="large-12 columns">
 	<h3>Project Plan</h3>
 	
