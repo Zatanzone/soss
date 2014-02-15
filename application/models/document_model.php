@@ -37,10 +37,14 @@ class Document_model extends CI_Model
 	
 	public function search($pid){
 		
-			$this->db->select('*');
-			$this->db->from('tb_document');
-			$this->db->join('tb_workproduct', 'tb_workproduct.DID = tb_document.DID');
+			$this->db->select('tb_workproduct.WID, tb_workproduct.DID, tb_document.DOCUMENT, 
+				   tb_document.TEMPLATE, tb_user.NAME, tb_workproduct.UID,max(tb_version.PROGRESS) as PROGRESS');
+			$this->db->from('tb_workproduct');
+			$this->db->join('tb_document', 'tb_document.DID = tb_workproduct.DID');
+			$this->db->join('tb_user', 'tb_user.UID = tb_workproduct.UID');
+			$this->db->join('tb_version', 'tb_version.WID = tb_workproduct.WID','left');
 			$this->db->where('tb_workproduct.PID', $pid);
+			$this->db->group_by('tb_workproduct.WID');
 			$this->db->order_by("tb_document.PRIORITY", "asc");
 			$query = $this->db->get();
 			$product = $query->result_array();
@@ -70,6 +74,72 @@ class Document_model extends CI_Model
 		}
 		return $return;
 	}
+	public function searchDocInPJ($pid){
+	
+		$this->db->select('tb_workproduct.DID, tb_document.DOCUMENT');
+		$this->db->from('tb_workproduct');
+		$this->db->join('tb_document', 'tb_document.DID = tb_workproduct.DID');
+		$this->db->where('tb_workproduct.PID', $pid);
+		$this->db->order_by("tb_document.PRIORITY", "asc");
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		$product = $query->result_array();
+	
+		return $product;
+	}
+	public function notInPJ($pid){
+		$this->db->select('tb_document.DID,tb_document.DOCUMENT');
+		$this->db->from('tb_document');
+		$this->db->where('tb_document.DID NOT IN (SELECT tb_workproduct.DID FROM tb_workproduct where tb_workproduct.PID ='.$pid.')');
+		$query = $this->db->get();
+		$res = $query->result_array();
+	    //echo $this->db->last_query();
+		if( is_array( $res ) && count( $res ) > 0 )
+		{
+			$return[''] = 'Select Document';
+			foreach($res as $row)
+			{
+				$return[$row['DID']] = $row['DOCUMENT'];
+			}
+		}
+		return $return;
+	}
+	public function upload($data){
+	
+		$insert = array(
+				'WID'=>$data['docid'],
+				'FILE'=>$data['docfile'],
+				'PROGRESS'=>$data['progress']
+		);
+	
+		$this->db->insert('tb_version',$insert);
+		//print_r($data);
+		redirect('document/index','refesh');
+		exit();
+	}
+	public function loadDoc($pid){
+		$this->db->select('tb_version.WID, tb_version.FILENAME, tb_version.PROGRESS, tb_version.UPLOADTIME');
+		$this->db->from('tb_version');
+		$this->db->join('tb_workproduct', 'tb_version.WID = tb_workproduct.WID');
+		$this->db->where('tb_workproduct.PID',$pid);
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		$res = $query->result_array();
+		
+		return $res;
+	}
+	public function createOne($data){
+	
+			$insert = array(
+					'DID' => $data['did'],
+					'UID' => $data['uid'],
+					'PID' => $data['pid']
+			);
+				
+			$this->db->insert('tb_workproduct',$insert);
+	}
+	
+	
 		
 }
 	
