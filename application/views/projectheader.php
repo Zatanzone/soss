@@ -38,12 +38,18 @@
 	  <div class="large-6 columns">
 		<section>
 			<div style="float:left;" onclick="showMenu()"><h6><a><img src="<?php echo base_url();?>images/menu-wht.png" width="25" height="auto" border="0" alt="">Notifications</a></h6></div>
-			<div id="menu-small" style="display:none;">
-				 <hr />
-				 <li><a href="#">xxxxxxxxxxxxxx</a></li><hr />
-  				 <li><a href="#">xxxxxxxxxxxxxx</a></li><hr />
-				 <li><a href="#">xxxxxxxxxxxxxx</a></li><hr />
-  				 <li><a href="#">more</a></li>
+			<div id="menu-small" style="display: none;">
+					<hr />
+					<li><a href="index">HOME</a></li>
+					<hr />
+					<li><a href="guide">GUIDE</a></li>
+					<hr />
+					<li><a href="knowledge">KNOWLEDGE</a></li>
+					<hr />
+					<li><a href="contactus">CONTACT</a></li>
+					<hr />
+					<li><a href="contactus">SIGN UP</a></li>
+					<hr />
 
 				<center><div style="cursor:pointer;" onclick="hideMenu()"><img src="<?php echo base_url();?>images/arrow-up-01-16.png" width="24" height="24" border="0" alt="">
 				</div></center>

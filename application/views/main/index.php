@@ -21,10 +21,6 @@
            <a href="index.html"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
           </h1>	  
 		</li>
-		<div class="icon-profile" onclick="showProfile()">
-			<img src="<?php echo base_url();?>images/iUser.png" width="32" height="32" border="0" alt="">
-		</div>
-		<p><a href="#" onclick="showNotifications()" class="small secondary button notifications">Notifications</a></p>
 	 </nav>
 	 <!--icon-button & text search -->
 	 <div class="search-box hide-for-small"><input type="text" id="" name="" placeholder="search"></div>
@@ -37,12 +33,18 @@
 	  <div class="large-6 columns">
 		<section>
 			<div style="float:left;" onclick="showMenu()"><h6><a><img src="<?php echo base_url();?>images/menu-wht.png" width="25" height="auto" border="0" alt="">Notifications</a></h6></div>
-			<div id="menu-small" style="display:none;">
-				 <hr />
-				 <li><a href="#">xxxxxxxxxxxxxx</a></li><hr />
-  				 <li><a href="#">xxxxxxxxxxxxxx</a></li><hr />
-				 <li><a href="#">xxxxxxxxxxxxxx</a></li><hr />
-  				 <li><a href="#">more</a></li>
+			<div id="menu-small" style="display: none;">
+					<hr />
+					<li><a href="index">HOME</a></li>
+					<hr />
+					<li><a href="guide">GUIDE</a></li>
+					<hr />
+					<li><a href="knowledge">KNOWLEDGE</a></li>
+					<hr />
+					<li><a href="contactus">CONTACT</a></li>
+					<hr />
+					<li><a href="contactus">SIGN UP</a></li>
+					<hr />
 
 				<center><div style="cursor:pointer;" onclick="hideMenu()"><img src="<?php echo base_url();?>images/arrow-up-01-16.png" width="24" height="24" border="0" alt="">
 				</div></center>

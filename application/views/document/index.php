@@ -38,7 +38,7 @@ overflow: auto;
 <div class="large-8 columns">
 <h4><?php echo $name;?> ( <?php echo $role;?> )</h4><hr />
 <div class="row">
-			<div class="large-12 columns">
+			<div class="large-12 columns hide-for-small">
 						<div class="large-3 columns">
 							 <h6>Document</h6>
 						</div>
@@ -133,7 +133,7 @@ overflow: auto;
 						<input type="hidden" name="projectname" value="<?php echo $name; ?>">
 						<input type="hidden" name="docname" value="<?php  echo $wp['DOCUMENT']; ?>">
 						<input type="hidden" name="docid" value="<?php echo $wp['WID']; ?>">
-						<input type="file" name="docfile" size="10" accept=".pdf,.docx" />
+						<input type="file" name="docfile" size="10" accept=".pdf,.doc,.doc" />
 						<center>Progess <input type="number" name="progress" style="width:10em;padding:3px;margin:0;border:1px solid #ddd;border-radius:5px;" min="0" max="100" value="0" ></center>
 						<br /><br />
 						<input type="submit" class="button small" value="upload" />

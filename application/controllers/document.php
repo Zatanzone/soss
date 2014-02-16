@@ -127,18 +127,20 @@ class Document extends CI_Controller {
 		$updoc['pid']=$this->input->post('pid');
 		$updoc['progress']=$this->input->post('progress');
 	
+		
 		$config['upload_path'] = 'versionupload/';
-		$config['allowed_types'] = 'pdf|docx|doc';
-		$config['max_size']	= '10000';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+		$config['allowed_types'] = '*';
+		$config['max_size']	= '100000';
+		
+		//pdf|docx|doc
 	
 		$file_name=$updoc['docname'] . "_" . $updoc['projectname'] . "_version";// variable of file name
 		$config['file_name'] = $file_name;
 	
 		$this->load->library('upload', $config);
+		
 	
-		if ($this->upload->do_upload("docfile")) { // ¶éÒÍÑ¾âËÅ´ä´é
+		if ($this->upload->do_upload("docfile")) { // ¶éÒÁÑ¹ÍÑ¾ä¿Åìä´é
 			$data=$this->upload->data();
 			$updoc['docfile'] = $data['file_name'];
 	
@@ -159,6 +161,8 @@ class Document extends CI_Controller {
 		);
 	
 		$this->db->insert('tb_version',$insert);
+		//echo $this->db->last_query();
+		//echo $config['upload_path'];
 		redirect('document/index/' . $updoc['pid'],'refesh');
 	}
 	
