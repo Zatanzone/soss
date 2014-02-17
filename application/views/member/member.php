@@ -94,7 +94,7 @@ $("#searchbt").on("click",function(){
 	      $.each( data, function( index, item){
 	            /* add to html string started above*/
 	           
-		 table+="<tr><td>"+item.NAME+"</td><td>"+item.EMAIL+"</td><td><a href='../add/"+item.UID+"/"+pid+"' onclick='return conf();'>Invite</a></td></tr>";       
+		 table+="<tr><td>"+item.NAME+"</td><td>"+item.EMAIL+"</td><td><a href='../add/"+item.UID+"/"+pid+"' onclick='return conf();'>Add</a></td></tr>";       
 	      });
 	      table+='</table></center>';
 	/* insert the html string*/
