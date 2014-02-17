@@ -155,7 +155,7 @@
 				<tbody>
 				<?php
 				if (count ( $mySuccess) == 0) { // ตรวจสอบว่าข้อมูลถูกส่งมาหรือไหม
-					echo "<tr><td colspan = '4' align='center'> -- no data --</td></tr>";
+					echo "<tr><td colspan = '5' align='center'> -- no data --</td></tr>";
 					} else {
 				$no = 1;
 				foreach ( $mySuccess as $ms ) {

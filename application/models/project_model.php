@@ -141,4 +141,28 @@ class Project_model extends CI_Model
 			redirect('main','refesh');
 		}
 	}
+	public function countPJ(){
+	
+		$this->db->select('COUNT(*) as countPJ');
+		$this->db->from('tb_project');
+		$this->db->where('STATUS', 'N');
+		$this->db->where('DELETED', 'N');
+	
+		$query = $this->db->get();
+		$countPJ = $query->result_array();
+
+		return $countPJ;
+	}
+	public function countSess(){
+	
+		$this->db->select('COUNT(*) as countSess');
+		$this->db->from('tb_project');
+		$this->db->where('STATUS', 'F');
+		$this->db->where('DELETED', 'N');
+	
+		$query = $this->db->get();
+		$countPJ = $query->result_array();
+	
+		return $countPJ;
+	}
 }
