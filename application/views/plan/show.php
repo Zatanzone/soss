@@ -2,16 +2,26 @@
 <div class="large-12 columns">
 	<div class="large-12 columns">
 	
-	<h4><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4>
-		<hr />
+	<h4 style="float: left;"><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4>
+		<?php if ($pm) 
+			echo anchor ( "plan/index/" . $pid, "List",array('class' => 'button','style'=>'float: right; margin-top: 20px; margin-bottom: 0px;') );
+			?>
+	<hr />
 
 	<div class="large-12 columns" style="overflow: auto;">
 	
-		<?php if ($pm) {?>
+	
 			<div>	
-			<h3 style="float: left;">Project Plan</h3><?php echo anchor ( "plan/index/" . $pid, "List",array('class' => 'button','style'=>'float: right') );?>
+			<h3 style="float: left;">Project Plan</h3>
 		</div>
-	<?php } ?>
+
+	<?php 
+		if($task==null){
+			echo '<h4 align ="center">===========  No Task ============</h4>';
+			echo '<h4 align ="center">Please, Wait your PM add Task for Project plan</h4>';
+		}else{
+	?>
+		
 		
 		<table width = "80%">
 		<thead>
@@ -43,15 +53,14 @@
 				$start = 0;
 				$i=0;
 				$dura = 0;
-				//$strNewDate2 =  date('Y-m-d',strtotime($projectSdate));
+
 			
 			foreach ($task as $tk){
-				//$strNewDate2 =  date('Y-m-d',strtotime($projectSdate));
+
 				echo '<tr>';
 
 				echo '<td width = "30%">'.$tk['TASK'].'</td>';
-				
-				//$taskStart = $tk['STARTDATE'];
+
 				$taskStart =  date('Y-m-d',strtotime($tk['STARTDATE']));
 				//echo $taskStart;
 				$strNewDate2 =  date('Y-m-d',strtotime($projectSdate));
@@ -67,7 +76,6 @@
 									$i++;
 								}else
 								{ 
-									//$title = $tk['TASK'].'<br> Start at : '.$tk['STARTDATE'].'<br> End at : '.$tk['ENDDATE'];
 								$title = $tk['TASK'];
 								$title = $title.'  Duration : '.$tk['STARTDATE'];
 								$title =$title.'  --  '.$tk['ENDDATE'];
@@ -86,66 +94,20 @@
 									}elseif ($tk['PROGRESS'] ==100){
 										echo '<td class = "tdplan"  Title = "'.$title.'" style="background-color: #01DF01; "  ></td>';
 									}
-								//echo '<td class = "tdplan"  Title = "'.$title.'" style="background-color: red; "  ></td>';
 								$taskStart = date ("Y-m-d", strtotime("+1 day", strtotime($taskStart)));
 								$i++;
 								}
 							}			
 						}else{
 						echo '<td></td>';
-						//$taskStart = date ("Y-m-d", strtotime("+1 day", strtotime($taskStart)));
+
 						}
 					$strNewDate2 = date ("Y-m-d", strtotime("+1 day", strtotime($strNewDate2)));
 				}
 				
-				
-				/* $taskStartDate =  date('Y-m-d',strtotime($tk['STARTDATE']));
-				$taskEndDate =  date('Y-m-d',strtotime($tk['ENDDATE']));
-				$dura = $tk['duration'];
-				while (strtotime($taskStartDate) <= strtotime($taskEndDate)) {
-					$WorkDay = date("w", strtotime($taskStartDate));
-					if($WorkDay == 0 || $WorkDay ==6){
-						$dura++;
-					}
-					$taskStartDate = date ("Y-m-d", strtotime("+1 day", strtotime($taskStartDate)));
-				}
-				
-			//	$strDate = date ("Y-m-d", strtotime("+1 day", strtotime($tk['STARTDATE'])));
-				if ($start==0) {
-					if($i<$dura);{			
-						echo '<td colspan="'.$dura.'" style="background-color: red;"></td>';
-						$i=$dura;
-					}
-					//echo $i;
-					$start =$i;
-					 while ($i<$projectDura) {
-						echo '<td>'.$i.'</td>';
-						$i++;
-					}  
-				}else{
-					$x = 0;
-					while ($x<$start) {
-						echo '<td></td>';
-						$x++;
-					}
-	
-					if($i<($start+$dura));{
-						echo '<td colspan = "'.$dura.'"style="background-color: red; width: 3px;"></td>';
-						$x=($start+$dura);
-					}
-					
-					$start =$x;
-					while ($x<$projectDura) {
-						echo '<td></td>';
-						$x++;
-					} 
-					
-				}
-				
-				 */
 				echo '</tr>';
 			}
-			?>
+			}?>
 		</tbody>
 		</table>
 	</div>

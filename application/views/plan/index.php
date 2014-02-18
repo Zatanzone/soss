@@ -80,8 +80,11 @@
 	</div>
 </div>
 
-	
-	
+<?php
+	if ($task== null) { 
+		echo '<h4 align ="center">===========  No Task ============</h4>';
+		echo '<h4 align ="center">Please, Wait your PM add Task for Project plan</h4>';
+	} else {?>
 <div>
 			<table border="1" class="tableuser" width="100%">
 				<thead>
@@ -95,10 +98,9 @@
 					</tr>
 				</thead>
 				<tbody>
-<?php
-	if (count ( $task ) == 0) { 
-		echo "<tr><td colspan = '4' align='center'> -- no task --</td></tr>";
-	} else {
+
+<?php 
+
 		$no = 1;
 		
 		foreach ( $task as $r ) {
@@ -114,6 +116,7 @@
 		
 		
 	}
+	echo '<input type="hidden" name="num" id ="num" value="<?php echo $no-1;?>">';
 	?>
 	
 	
@@ -127,7 +130,7 @@
   
 </tbody>
 </table>
-<input type="hidden" name="num" id ="num" value="<?php echo $no-1;?>">
+
 </div>
 </div>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
