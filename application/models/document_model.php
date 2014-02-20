@@ -101,8 +101,10 @@ class Document_model extends CI_Model
 			{
 				$return[$row['DID']] = $row['DOCUMENT'];
 			}
-		}
-		return $return;
+			return $return;
+		}else
+			return false;
+		
 	}
 	public function upload($data){
 	

@@ -199,7 +199,10 @@ overflow: auto;
 					</center>
 		<?php }else{?>
 			
-			
+			<?php
+				if ($docOP== null) { 
+					
+			} else {?>
 			<div  id="doc-box" style="display:none;" class="large-12 columns">
 			<?php echo form_open_multipart('document/adddoc');?>
 					<div class="large-4 columns">
@@ -223,7 +226,8 @@ overflow: auto;
 			<a onclick="showdocbox()" class="button">Add +</a>
 			<!--  <a href="" class="button success small">Save</a> -->
 			</center>
-			<?php }?>
+			<?php }
+			}?>
 			
 			<script>
 					function showdocbox() {
