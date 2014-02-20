@@ -134,5 +134,16 @@ class Form extends CI_Controller {
 		}
 	}
 	
+	function forgetpassword() {
+		
+		
+		$this->load->view('manuindex');
+		$this->load->view('form/forgetpassword');
+		
+		
+		
+	}
+	
+	
 }
 ?>
