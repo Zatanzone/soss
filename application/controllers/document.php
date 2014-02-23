@@ -126,15 +126,21 @@ class Document extends CI_Controller {
 		$updoc['projectname']=$this->input->post('projectname');
 		$updoc['pid']=$this->input->post('pid');
 		$updoc['progress']=$this->input->post('progress');
-	
+		
+		$version = $this->Document_model->countVersion($updoc['docid'],$updoc['pid']);
+		foreach ($version as $vs){
+			$counter['countDoc'] = $vs['countvs'];
+		}
+		
+		$vs = $counter['countDoc']+1;
 		
 		$config['upload_path'] = 'versionupload/';
 		$config['allowed_types'] = '*';
 		$config['max_size']	= '100000';
 		
 		//pdf|docx|doc
-	
-		$file_name=$updoc['docname'] . "_" . $updoc['projectname'] . "_version";// variable of file name
+		
+		$file_name=$updoc['docname'] . "_" . $updoc['projectname'] . "_version_" . $vs;// variable of file name
 		$config['file_name'] = $file_name;
 	
 		$this->load->library('upload', $config);
@@ -148,9 +154,6 @@ class Document extends CI_Controller {
 			echo  $this->upload->display_errors();
 		}
 			
-		//print_r($updoc);
-		//print_r($updoc['docid']);
-		//print_r($updoc['docname']);
 	
 		$insert = array(
 				'WID'=>$updoc['docid'],
@@ -161,9 +164,7 @@ class Document extends CI_Controller {
 		);
 	
 		$this->db->insert('tb_version',$insert);
-		//echo $this->db->last_query();
-		//echo $config['upload_path'];
-		redirect('document/index/' . $updoc['pid'],'refesh');
+		redirect('document/index/' . $updoc['pid'],'refesh'); 
 	}
 	
 	function adddoc(){

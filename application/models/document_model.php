@@ -140,7 +140,19 @@ class Document_model extends CI_Model
 				
 			$this->db->insert('tb_workproduct',$insert);
 	}
-	
+	public function countVersion($wid,$pid){
+		
+		$this->db->select('COUNT( tb_version.WID ) AS countvs');
+		$this->db->from('tb_version');
+		$this->db->join('tb_workproduct', 'tb_version.WID = tb_workproduct.WID');
+		$this->db->where('tb_workproduct.PID',$pid);
+		$this->db->where('tb_version.WID',$wid);
+		$query = $this->db->get();
+		
+		$res = $query->result_array();
+		
+		return $res;
+	}
 	
 		
 }
