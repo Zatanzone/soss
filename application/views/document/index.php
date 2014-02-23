@@ -36,7 +36,7 @@ overflow: auto;
 </style>
 <div class="row">
 <div class="large-8 columns">
-<h4><?php echo $name;?> ( <?php echo $role;?> )</h4><hr />
+<h4><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4><hr />
 <div class="row">
 			<div class="large-12 columns hide-for-small">
 						<div class="large-3 columns">

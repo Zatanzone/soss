@@ -19,7 +19,11 @@
       
         <li class="name">
           <h1>
-           <a href="index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+          <?php if ("" == $this->session->userdata('user_id')){?>
+           <a href="<?php echo base_url();?>index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+          <?php }else {?>
+          <a href="<?php echo base_url();?>main/index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+          <?php }?>
           </h1>	  
 		</li>
 		<div class="icon-profile" >
