@@ -70,5 +70,17 @@ class Member_model extends CI_Model{
 	
 		return $chkMail;
 	}
+	Public function savekey($email,$savekey)
+	{
+		$post = array(
+				'UKEY' =>$savekey
+		);
+		
+		$this->db->where('tb_user.EMAIL', $email);
+		$this->db->update('tb_user', $post);
+		//echo $this->db->last_query();
+		return true;
+	
+	}
 	
 }

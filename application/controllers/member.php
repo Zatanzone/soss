@@ -119,7 +119,6 @@ class Member extends CI_Controller
 			
 			if($chkMail==true){
 			
-			echo "xxx";
 			//send email
 			$to = $_REQUEST['email'] ;
 			$subject = "Forget Password From Soss Website" ;
@@ -129,7 +128,9 @@ class Member extends CI_Controller
 			$headers = 'From: '.$email."\r\n".'Reply-To: '.$email."\r\n" .'X-Mailer: PHP/' . phpversion();
 				
 			mail($to, $subject, $message, $headers);
-				
+			$savekey = $this->Member_model->savekey($_REQUEST['email'],$_REQUEST['keys']);
+			if($savekey==true){
+
 			echo "<script>";
 				echo "alert('Sending Url and Key to your e-mail.');";
 				echo "</script>";
@@ -137,11 +138,16 @@ class Member extends CI_Controller
 			
 			}else{
 				echo "<script>";
+				echo "alert('Try again ! Have a Problem at method send key');";
+				echo "</script>";
+				redirect("form/signin","refresh");	
+			}
+			}else{
+				echo "<script>";
 				echo "alert('Try again! : this email is valid');";
 				echo "</script>";
 				redirect("form/signin","refresh");
 			}
-			
 		}
 		else{
 			echo "<script>";

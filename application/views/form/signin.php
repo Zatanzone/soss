@@ -72,7 +72,7 @@ z-index:1002;
 			  <form method='post' action='../member/forget'>
 			  <h6>Your Email</h6>		
 			  <input name='email' type='email' >
-  			  <input name='keys' type='hidden' value='$keys'>
+  			  <input name='keys' type='hidden' value='<?php echo $keys;?>'>
 			  <input type='submit' class='button small'>
 			  </form>
 			 				
