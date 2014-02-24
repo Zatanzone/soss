@@ -111,6 +111,9 @@ class Form extends CI_Controller {
 				
 				redirect('/main','refesh');
 			}else{
+				echo "<script>";
+				echo "alert('E-mail or Password invalid!');";
+				echo "</script>";
 				$this->load->view('manuindex');
 				$this->load->view('form/signin');
 			}

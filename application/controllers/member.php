@@ -6,6 +6,7 @@ class Member extends CI_Controller
 		$this->load->model('Member_model');
 	//	$this->load->model('Role_model');
 		$this->load->model('Project_model');
+		$this->load->library('encrypt');
 	}
  
 	public function index($pid){
@@ -144,7 +145,7 @@ class Member extends CI_Controller
 			}
 			}else{
 				echo "<script>";
-				echo "alert('Try again! : this email is valid');";
+				echo "alert('Try again! : this email is invalid');";
 				echo "</script>";
 				redirect("form/signin","refresh");
 			}
@@ -155,8 +156,34 @@ class Member extends CI_Controller
 			echo "</script>";
 			redirect("form/signin");
 		}
+			
+	}
+	
+	public function chgPwd(){
 		
+		$chg['email']=$this->input->post('email');
+		$hashPassword = $this->encrypt->sha1($this->input->post('password'));
+		$chg['password']=$hashPassword;
+		$chg['ukey']=$this->input->post('ukey');
+		
+		
+		
+		
+		$post = array(
+				'PASSWORD' =>$chg['password']
+		);
+		
+		$this->db->where('tb_user.EMAIL', $chg['email']);
+		$this->db->where('tb_user.UKEY', $chg['ukey']);
+		$this->db->update('tb_user', $post);
+		//echo $this->db->last_query();
+		echo "<script>";
+		echo "alert('Success ! Your password is changed');";
+		echo "</script>";
+		redirect("form/signin","refresh");
 		
 		
 	}
+	
+	
 }

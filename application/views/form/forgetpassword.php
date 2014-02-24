@@ -2,7 +2,7 @@
 		<center>
 		<div class="large-8 columns signup-box">
 			<h1>Forget Password</h1>
-			<?php echo form_open_multipart('form/signup'); ?>
+			<?php echo form_open_multipart('member/chgPwd'); ?>
 				
 			<div class="row">
 				<div class="large-6 columns">
@@ -33,7 +33,7 @@
 						<label for="right-label" class="right inline">Key:</label>
 					</div>
 					<div class="large-9 columns">
-						<input type="text" id="right-label" name="keynumber"placeholder="Enter your key from e-mail">
+						<input type="text" id="right-label" name="ukey"placeholder="Enter your key from e-mail">
 					</div>
 					<div class="large-12 columns">
 						&nbsp
@@ -41,7 +41,8 @@
 						<input type="hidden" id="right-label" name="">
 					</div>
 					<div class="large-12 columns">
-						<a href="signin" class="button signin-btn">Submit new password</a>
+						
+						<input type="submit" class="button signin-btn" value="Submit new password">
 					</div>
 				</div>
 	
