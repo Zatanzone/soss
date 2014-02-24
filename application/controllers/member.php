@@ -106,4 +106,51 @@ class Member extends CI_Controller
 		//echo json_encode($member);
 		return $member;
 	}
+	
+	public function forget(){
+		
+		
+		
+		
+		if (isset($_REQUEST['email']))
+		//if "email" is filled out, send email
+		{
+			$chkMail = $this->Member_model->checkmailforget($_REQUEST['email']);
+			
+			if($chkMail==true){
+			
+			echo "xxx";
+			//send email
+			$to = $_REQUEST['email'] ;
+			$subject = "Forget Password From Soss Website" ;
+			$email = "soss.phuket@gmail.com" ;
+			$message = "Press link to change password form"."\r\n\r\n\n"."http://soss.netau.net/form/forgetpassword"."\r\n\r\n"."keys: " . $_REQUEST['keys'] . "\r\n\r\n\n\n"."Thank You!! \n"."Soss Developer Team";
+				
+			$headers = 'From: '.$email."\r\n".'Reply-To: '.$email."\r\n" .'X-Mailer: PHP/' . phpversion();
+				
+			mail($to, $subject, $message, $headers);
+				
+			echo "<script>";
+				echo "alert('Sending Url and Key to your e-mail.');";
+				echo "</script>";
+				redirect("form/signin","refresh");
+			
+			}else{
+				echo "<script>";
+				echo "alert('Try again! : this email is valid');";
+				echo "</script>";
+				redirect("form/signin","refresh");
+			}
+			
+		}
+		else{
+			echo "<script>";
+			echo "alert('Try again!');";
+			echo "</script>";
+			redirect("form/signin");
+		}
+		
+		
+		
+	}
 }

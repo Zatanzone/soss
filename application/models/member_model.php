@@ -54,5 +54,21 @@ class Member_model extends CI_Model{
 		}
 		return $return;
 	}
+	Public function checkmailforget($email)
+	{
+		$this->db->select('tb_user.EMAIL');
+		$this->db->from('tb_user');
+		$this->db->where('tb_user.EMAIL', $email);
+		
+		$query = $this->db->get();
+	
+		if ( $query->num_rows() > 0) {
+			$chkMail = TRUE;
+		}else {
+			$chkMail = FALSE;
+		}
+	
+		return $chkMail;
+	}
 	
 }

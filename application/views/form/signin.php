@@ -1,3 +1,7 @@
+
+<?php $keys = generate_token(8); ?>
+<?php //echo $keys; ?>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -27,7 +31,7 @@ padding: 16px;
 border: 5px solid gray;
 background-color: white;
 z-index:1002;
-overflow: auto;
+/*overflow: auto;*/
 }
 .textright{float: right;}
 </style>
@@ -63,37 +67,15 @@ overflow: auto;
 					<a class="hidepop textright">Cancel</a>
 					<br>
 					<h5><a>Forget Password</a></h5>
-					
-<?php
-			if (isset($_REQUEST['email']))
-			//if "email" is filled out, send email
-			  {
-			  //send email
-			  $to = $_REQUEST['email'] ;
-			  $subject = "Forget Password From Soss Website" ;
-			  $email = "soss.phuket@gmail.com" ;
-			  $message = "Press link to change password form"."\r\n\r\n\n"."http://soss.netau.net/form/forgetpassword"."\r\n\r\n\n\n"."Thank You!! \n"."Soss Developer Team";
-			  
-			  $headers = 'From: '.$email."\r\n".'Reply-To: '.$email."\r\n" .'X-Mailer: PHP/' . phpversion();
-			  
-			  mail($to, $subject, $message, $headers);
-			  
-			  echo '<script language="javascript">';
-			  echo 'alert("Sending link:Url for change password to your Email")';
-			  echo '</script>';
-			  //echo "Sending link:Url for change password to your Email";
-			  }
-			else
-			//if "email" is not filled out, display the form
-			  {
-			  echo "<form method='post' action=''>
+	
+			
+			  <form method='post' action='../member/forget'>
 			  <h6>Your Email</h6>		
-			  <input name='email' type='text' >
+			  <input name='email' type='email' >
+  			  <input name='keys' type='hidden' value='$keys'>
 			  <input type='submit' class='button small'>
-			  </form>";
-			  }
-?>
-				
+			  </form>
+			 				
 </div>
 
 <script>
