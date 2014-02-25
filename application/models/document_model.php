@@ -48,8 +48,7 @@ class Document_model extends CI_Model
 			$this->db->order_by("tb_document.PRIORITY", "asc");
 			$query = $this->db->get();
 			$product = $query->result_array();
-			//print_r($product);
-			//echo $this->db->last_query();
+
 			return $product;
 	}
 	
@@ -82,7 +81,7 @@ class Document_model extends CI_Model
 		$this->db->where('tb_workproduct.PID', $pid);
 		$this->db->order_by("tb_document.PRIORITY", "asc");
 		$query = $this->db->get();
-		//echo $this->db->last_query();
+
 		$product = $query->result_array();
 	
 		return $product;
@@ -93,7 +92,7 @@ class Document_model extends CI_Model
 		$this->db->where('tb_document.DID NOT IN (SELECT tb_workproduct.DID FROM tb_workproduct where tb_workproduct.PID ='.$pid.')');
 		$query = $this->db->get();
 		$res = $query->result_array();
-	    //echo $this->db->last_query();
+
 		if( is_array( $res ) && count( $res ) > 0 )
 		{
 			$return[''] = 'Select Document';
@@ -115,7 +114,7 @@ class Document_model extends CI_Model
 		);
 	
 		$this->db->insert('tb_version',$insert);
-		//print_r($data);
+
 		redirect('document/index','refesh');
 		exit();
 	}
@@ -125,7 +124,7 @@ class Document_model extends CI_Model
 		$this->db->join('tb_workproduct', 'tb_version.WID = tb_workproduct.WID');
 		$this->db->where('tb_workproduct.PID',$pid);
 		$query = $this->db->get();
-		//echo $this->db->last_query();
+
 		$res = $query->result_array();
 		
 		return $res;
@@ -154,6 +153,54 @@ class Document_model extends CI_Model
 		return $res;
 	}
 	
+	public function checkDocInPlan($wid,$pid){
+	
+		$this->db->select('tb_plan.IS_DOC');
+		$this->db->from('tb_plan');
+		$this->db->where('tb_plan.IS_DOC',$wid);
+		$this->db->where('tb_plan.PID',$pid);
+	
+		$query = $this->db->get();
+		if ( $query->num_rows() == 1) {
+			$chkInP = TRUE;
+		}else {
+			$chkInP = FALSE;
+		}
+	
+		return $chkInP;
+	}
+	
+	public function insertUpLoad($data){
+		$insert = array(
+				'WID'=>$data['docid'],
+				'PROGRESS'=>$data['progress'],
+				'FILENAME'=>$data['docfile'],
+				'UPLOADTIME'=>date("Y-m-d H:i:s")
+		
+		);
+		
+		$this->db->insert('tb_version',$insert);
+	}
+	
+	public function updateProGreInPlan($data){
+		$post = array(
+				'PROGRESS' =>$data['progress']
+		);
+		
+		$this->db->where('tb_plan.IS_DOC', $data['docid']);
+		$this->db->where('tb_plan.PID', $data['pid']);
+		$this->db->update('tb_plan', $post);
+	}
+	
+	public function setUserToDoc($data){
+		$post = array(
+				'UID' =>$data['uid']
+		);
+		
+		$this->db->where('PID', $data['pid']);
+		$this->db->where('DID', $data['did']);
+		$this->db->update('tb_workproduct', $post);
+	}
 		
 }
 	

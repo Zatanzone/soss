@@ -134,7 +134,11 @@ overflow: auto;
 						<input type="hidden" name="docname" value="<?php  echo $wp['DOCUMENT']; ?>">
 						<input type="hidden" name="docid" value="<?php echo $wp['WID']; ?>">
 						<input type="file" name="docfile" size="10" accept=".pdf,.doc,.doc" />
-						<center>Progess <input type="number" name="progress" style="width:10em;padding:3px;margin:0;border:1px solid #ddd;border-radius:5px;" min="0" max="100" value="0" ></center>
+						<center> 
+							Progress<input type="number" name="progress" value = "<?php if("" == $wp['PROGRESS']){ echo 0; }else {echo $wp['PROGRESS'];}?>" 
+									style="width:8em;padding:3px;margin:0;margin-top: 10px;border:1px solid #ddd;border-radius:5px;" 
+									min="<?php if($wp['PROGRESS'] == ""){ echo 0; }else {echo $wp['PROGRESS'];}?>" max="100" value="0" >
+						</center>
 						<br /><br />
 						<input type="submit" class="button small" value="upload" />
 						<hr>
@@ -204,7 +208,7 @@ overflow: auto;
 					
 			} else {?>
 			<div  id="doc-box" style="display:none;" class="large-12 columns">
-			<?php echo form_open_multipart('document/adddoc');?>
+			<?php echo form_open_multipart('document/addDoc');?>
 					<div class="large-4 columns">
 					Select Document 
 					</div>

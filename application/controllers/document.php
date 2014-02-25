@@ -60,22 +60,20 @@ class Document extends CI_Controller {
 			$pro['pid']  = $pj['PID'];
 		}
 		$this->load->library('form_validation');
-		
 		$this->form_validation->set_rules('did[]', 'did', 'required');
 		
-		if ($this->form_validation->run() == FALSE)  
-		{
+		if ($this->form_validation->run() == FALSE) {
+			
 			$this->load->view('projectheader');
 			$this->load->view('document/show',$pro);
 			$this->load->view('projectside');
 			
 		}else{
-			//print_r($_POST);
+			
 			$creatp['did'] = $this->input->post('did');
 			$creatp['pid'] = $pro['pid'];
-
 			$this->Document_model->create($creatp);
-//echo $creatp['pid'];
+
 			redirect('document/setDoc/'.$creatp['pid']);
 			
 		}
@@ -104,14 +102,11 @@ class Document extends CI_Controller {
 			$i=0;
 			foreach($_POST['did'] as $val)
 			{
-				$post = array(
-						'UID' =>$_POST['tid'][$i]
-				);
-		
-				$this->db->where('PID', $pid);
-				$this->db->where('DID', $val);
-				$this->db->update('tb_workproduct', $post);
-				//echo $this->db->last_query();
+				$data['uid'] = $_POST['tid'][$i];
+				$data['did'] = $val;
+				$data['pid'] = $pid;
+				$this->Document_model->setUserToDoc($data);
+
 				$i=$i+1;
 			}
 			redirect("document/index/".$pid,"refresh");
@@ -119,7 +114,7 @@ class Document extends CI_Controller {
 		
 		
 	}
-	function do_upload()
+	public function do_upload()
 	{
 		$updoc['docid']=$this->input->post('docid');
 		$updoc['docname']=$this->input->post('docname');
@@ -128,6 +123,7 @@ class Document extends CI_Controller {
 		$updoc['progress']=$this->input->post('progress');
 		
 		$version = $this->Document_model->countVersion($updoc['docid'],$updoc['pid']);
+		$chkInPlan = $this->Document_model->checkDocInPlan($updoc['docid'],$updoc['pid']);
 		foreach ($version as $vs){
 			$counter['countDoc'] = $vs['countvs'];
 		}
@@ -136,7 +132,7 @@ class Document extends CI_Controller {
 		
 		$config['upload_path'] = 'versionupload/';
 		$config['allowed_types'] = '*';
-		$config['max_size']	= '100000';
+		$config['max_size']	= '1000000000000';
 		
 		//pdf|docx|doc
 		
@@ -153,21 +149,17 @@ class Document extends CI_Controller {
 		}else{
 			echo  $this->upload->display_errors();
 		}
-			
-	
-		$insert = array(
-				'WID'=>$updoc['docid'],
-				'PROGRESS'=>$updoc['progress'],
-				'FILENAME'=>$updoc['docfile'],
-				'UPLOADTIME'=>date("Y-m-d H:i:s")
-	
-		);
-	
-		$this->db->insert('tb_version',$insert);
+		
+		$this->Document_model->insertUpLoad($updoc);
+		
+		if ($chkInPlan == TRUE) {
+				
+			$this->Document_model->updateProGreInPlan($updoc);
+		}
 		redirect('document/index/' . $updoc['pid'],'refesh'); 
 	}
 	
-	function adddoc(){
+	public function addDoc(){
 		
 		$this->load->library('form_validation');
 		
@@ -176,12 +168,13 @@ class Document extends CI_Controller {
 		$creatp['did1'] = $this->input->post('did');
 		$creatp['pid'] = $this->input->post('pid');
 		$creatp['uid1'] = $this->input->post('uid');
-		if ($this->form_validation->run() == FALSE)  
-		{
+		if ($this->form_validation->run() == FALSE) {
+			echo "<script>";
+			echo "alert('Please select the document and project members');";
+			echo "</script>";
 			redirect('document/index/' . $creatp['pid'],'refesh');
-		}else{
-			//print_r($_POST);
 			
+		}else{
 			
 			$uid = $creatp['uid1'][0];
 			$did = $creatp['did1'][0];
@@ -194,6 +187,5 @@ class Document extends CI_Controller {
 		}
 		
 	}
-	
 	
 }
