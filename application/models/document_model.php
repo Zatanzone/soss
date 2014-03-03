@@ -175,11 +175,10 @@ class Document_model extends CI_Model
 		$insert = array(
 				'WID'=>$data['docid'],
 				'PROGRESS'=>$data['progress'],
-				'FILENAME'=>$data['docname'],
+				'FILENAME'=>$data['docfile'],
 				'UPLOADTIME'=>date("Y-m-d H:i:s")
 		
 		);
-		
 
 		$this->db->insert('tb_version',$insert);
 	}
