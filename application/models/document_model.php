@@ -208,25 +208,27 @@ class Document_model extends CI_Model
 		$docFinish=0;
 		$docNoneFinish=0;
 	
-		$this->db->select('*');
+		$this->db->select('*,MAX(  tb_version.PROGRESS ) AS mp');
 		$this->db->from('tb_workproduct');
 		$this->db->join('tb_version', 'tb_workproduct.WID = tb_version.WID');
 		$this->db->where('tb_workproduct.PID', $pid);
+		$this->db->group_by('tb_workproduct.WID');
 		$query = $this->db->get();
 		
 		if ($query->num_rows()>0) {
 		$list = $query->result_array();
 		foreach ($list as $prg){
-			if($prg['PROGRESS'] == 100) //progress is 100%
-				$docFinish += 1;
+			if($prg['mp'] == 100) //progress is 100%
+				$docFinish = $docFinish+1;
 			else{
-			$docNoneFinish += 1;
+			$docNoneFinish = $docNoneFinish+1;
 			}
 			$doc['finished'] = $docFinish;
 			$doc['nonFinished'] = $docNoneFinish;
-			$doc['countDoc'] = $docFinish+$docNoneFinish;
-			return $doc;
+			$doc['countDoc'] = $query->num_rows();;
+			
 		}
+			return $doc;
 		}else{
 			return false;
 		}
