@@ -8,9 +8,6 @@ class Role_model extends CI_Model{
 		$query = $this->db->get('tb_role');
 		
 		$role = $query->result_array();
-
-		
-		
 		return $option;
 	}
 	public function checkHasRole($pid){

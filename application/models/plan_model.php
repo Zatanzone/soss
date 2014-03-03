@@ -89,4 +89,25 @@ class Plan_model extends CI_Model{
 		
 		return $rs;
 	}
+	public function checkTask($pid){
+		$taskFinish=0;
+		$taskNoneFinish=0;
+	
+		$query = $this->db->get_where('tb_plan', array('PID' => $pid));
+		$list = $query->result_array();
+	
+		foreach ($list as $prg){
+			if($prg['PROGRESS'] == 100) //progress is 100%
+				$taskFinish += 1;
+			else
+				$taskNoneFinish += 1;
+		}
+	
+		$task['finished'] = $taskFinish;
+		$task['nonFinished'] = $taskNoneFinish;
+		$task['countTask'] = $taskFinish+$taskNoneFinish;
+	
+		return $task;
+	}
+	
 }

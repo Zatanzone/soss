@@ -116,6 +116,7 @@ class Document extends CI_Controller {
 	}
 	public function do_upload()
 	{
+
 		$updoc['docid']=$this->input->post('docid');
 		$updoc['docname']=$this->input->post('docname');
 		$updoc['projectname']=$this->input->post('projectname');

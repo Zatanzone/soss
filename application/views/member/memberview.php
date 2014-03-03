@@ -2,7 +2,7 @@
 <div class="large-8 columns">
 	<div class="large-12 columns">
 
-	<h4><?php echo $name?> <br>( <?php echo $role?> )</h4>
+	<h4><a href ="<?php echo base_url();?>project/index/<?php echo $pid?>"><?php echo $name;?></a> <br>( <?php echo $role;?> )</h4>
 		<hr />
 		<input type="hidden" id="pid" value="<?php echo $pid?>" />
 	</div>

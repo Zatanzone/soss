@@ -171,14 +171,16 @@ class Document_model extends CI_Model
 	}
 	
 	public function insertUpLoad($data){
+
 		$insert = array(
 				'WID'=>$data['docid'],
 				'PROGRESS'=>$data['progress'],
-				'FILENAME'=>$data['docfile'],
+				'FILENAME'=>$data['docname'],
 				'UPLOADTIME'=>date("Y-m-d H:i:s")
 		
 		);
 		
+
 		$this->db->insert('tb_version',$insert);
 	}
 	
@@ -200,6 +202,35 @@ class Document_model extends CI_Model
 		$this->db->where('PID', $data['pid']);
 		$this->db->where('DID', $data['did']);
 		$this->db->update('tb_workproduct', $post);
+	}
+	
+	public function checkWorkproduct($pid){
+		$docFinish=0;
+		$docNoneFinish=0;
+	
+		$this->db->select('*');
+		$this->db->from('tb_workproduct');
+		$this->db->join('tb_version', 'tb_workproduct.WID = tb_version.WID');
+		$this->db->where('tb_workproduct.PID', $pid);
+		$query = $this->db->get();
+		
+		if ($query->num_rows()>0) {
+		$list = $query->result_array();
+		foreach ($list as $prg){
+			if($prg['PROGRESS'] == 100) //progress is 100%
+				$docFinish += 1;
+			else{
+			$docNoneFinish += 1;
+			}
+			$doc['finished'] = $docFinish;
+			$doc['nonFinished'] = $docNoneFinish;
+			$doc['countDoc'] = $docFinish+$docNoneFinish;
+			return $doc;
+		}
+		}else{
+			return false;
+		}
+		
 	}
 		
 }

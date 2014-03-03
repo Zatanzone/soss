@@ -3,6 +3,9 @@
 	<div class="row">
 		<div class="large-8 columns">
 			<h4><?php echo $project;?> :: <?php echo $role;?></h4><hr />
+			<?php if ($status == 'F') {
+				echo '<h5 align ="center" style="color: red;">==============  This project is closed ==============</h5>';
+			}?>
 			<div class="row">
 				<div class="large-4 columns">
 						<a href="<?php echo base_url();?>member/index/<?php echo $pid;?>">
@@ -25,9 +28,39 @@
 				</div>
 			</div>
 			<hr />
-			<h4>Calendar</h4><hr />
-			<img src="<?php echo base_url()?>images/picture/calendar.jpg" width="695" height="464" border="0" alt="">
+			<div class="row center">
+					<?php 
+					if ($pm && $status == 'N') echo anchor('project/getcloseproject/'.$pid,'Close Project');
+					?>
 
+			</div>
+			<div class="row">
+			<div class="large-3 columns ">
+				<?php  echo 'Project Detail';?>
+			</div>
+			<div class="large-9 columns">
+				<?php echo $detail;?>
+			</div>
+			</div>
+			
+			<div class="row">
+			<div class="large-3 columns">
+				<?php  echo 'Project Start';?>
+			</div>
+			<div class="large-9 columns">
+				<?php echo $start;?>
+			</div>
+			</div>
+			
+			<div class="row">
+			<div class="large-3 columns">
+				<?php  echo 'Project End';?>
+			</div>
+			<div class="large-9 columns">
+				<?php echo $end;?>
+			</div>
+			</div>
+		
 		</div>
 
 		<script type='text/javascript'>

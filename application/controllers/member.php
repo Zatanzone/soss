@@ -29,20 +29,21 @@ class Member extends CI_Controller
 		//print_r($project);
 		foreach ($project as $pj){
 			$pro['name']  = $pj['PROJECT'];
-			$pro['role']  = $pj['ROLE'];			
+			$pro['role']  = $pj['ROLE'];		
+			$pro['status']  = $pj['STATUS'];
 		}
 		
 		$pro['pid'] = $pid;
 
 		$checkPM= $this->Project_model->checkPM($pid);
 
-		 if (!$checkPM) {
-			$this->load->view('projectheader');
-			$this->load->view('member/memberview',$pro);
-			$this->load->view('projectside');
-		}else{ 
+		if($checkPM && $pro['status'] == 'N' ){ 
 			$this->load->view('projectheader');
 			$this->load->view('member/member',$pro);
+			$this->load->view('projectside');
+		}else{
+			$this->load->view('projectheader');
+			$this->load->view('member/memberview',$pro);
 			$this->load->view('projectside');
 		}
 		

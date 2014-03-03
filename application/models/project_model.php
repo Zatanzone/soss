@@ -4,6 +4,8 @@ class Project_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Plan_model');
+		$this->load->model('Document_model');
 	}
 	
 	public function model($pid){
@@ -73,9 +75,6 @@ class Project_model extends CI_Model
 		$this->db->where('tb_team.UID', $this->session->userdata('user_id'));
 		$this->db->where('tb_team.PID', $pid);
 		$query = $this->db->get();
-		//$query = $this->db->get_where('tb_project', array('pid' => $pid));
-	
-		//echo $this->db->last_query();
 
 		$data = $query->result_array();
 		return $data;
@@ -87,13 +86,10 @@ class Project_model extends CI_Model
 		$data = $query->result_array();
 		
 		$chkPM = FALSE;
-		$pm = 0;
 		
 		foreach ($data as $row){
 			$pm = $row['UID'];
 		}
-		
-		
 		
 		if ($pm == $this->session->userdata('user_id')) {
 			$chkPM = TRUE;
@@ -164,5 +160,9 @@ class Project_model extends CI_Model
 		$countPJ = $query->result_array();
 	
 		return $countPJ;
+	}
+	
+	public function closeProject($pid) {
+		
 	}
 }
