@@ -1,4 +1,3 @@
-
 	<!-- main Content -->
 	<div class="row">
 		<div class="large-8 columns">
@@ -20,8 +19,8 @@
 			<div class="row">
 				<div class="large-6 columns">
 					<div class="panel">
-						<h4>How to use ?</h4>
-						<p>ISO/IEC 29110 series, targeted by audience, have been developed
+							<h4>How to use ?</h4>
+							<p>ISO/IEC 29110 series, targeted by audience, have been developed
 							to improve product and/or service quality.ISO/IEC 29110 is not
 							intended to preclude the use of different life cycles such as:
 							waterfall, iterative, incremental, evolutionary or agile.</p>
@@ -40,17 +39,17 @@
 			<div class="row">
 				<div class="large-4 columns">
 					<div class="panel">
-						<p>Four columns</p>
+						<p><iframe width="150" height="auto" src="//www.youtube.com/embed/viP7WLaFC8E" frameborder="0" allowfullscreen></iframe></p>
 					</div>
 				</div>
 				<div class="large-4 columns">
 					<div class="panel">
-						<p>Four columns</p>
+						<p><iframe width="150" height="auto" src="//www.youtube.com/embed/reRJLlU0LrY" frameborder="0" allowfullscreen></iframe></p>
 					</div>
 				</div>
 				<div class="large-4 columns">
 					<div class="panel">
-						<p>Four columns</p>
+						<p><iframe width="150" height="auto" src="//www.youtube.com/embed/HiFRhNSIPq8" frameborder="0" allowfullscreen></iframe></p>
 					</div>
 				</div>
 			</div>
@@ -121,4 +120,3 @@
 		</div>
 	</section>
 	<!-- Knowledge side -->
-

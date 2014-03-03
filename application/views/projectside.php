@@ -1,4 +1,3 @@
-
 <div class="large-3 columns hide-for-small">
 <div><img src="<?php echo base_url();?>/images/pic_profile/<?php echo $this->session->userdata('user_avatar');?>" width="220" height="180" border="0" alt=""></div>
 <hr />
@@ -7,8 +6,7 @@
 				<p><?php echo $this->session->userdata('user_email');?></p>
 				<p><a href="<?php echo base_url()?>session/signout" class="small alert button">Sign Out</a></p>
 				<hr />
-				<h6><a href="newproject.html" id="" name="">New Project</a></h6>
-				<h6><a href="notifications.html" id="" name="">Notifications</a></h6>
+				
 
 			</div>
 		</div>

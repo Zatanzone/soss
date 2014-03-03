@@ -28,38 +28,65 @@
 				</div>
 			</div>
 			<hr />
-			<div class="row center">
+			
+			<div class="row">
+					<div class="row">
+						<div class="large-1 columns">
+							&nbsp
+						</div>
+						<div class="large-3 columns">
+							<h6>Project Detail</h6>
+						</div>
+						<div class="large-1 columns">
+							:
+						</div>
+						<div class="large-7 columns">
+							<?php echo $detail;?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-1 columns">
+							&nbsp
+						</div>
+						<div class="large-3 columns">
+							<h6>Project Start</h6>
+						</div>
+						<div class="large-1 columns">
+							:
+						</div>
+						<div class="large-7 columns">
+							<?php echo $start;?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-1 columns">
+							&nbsp
+						</div>
+						<div class="large-3 columns">
+							<h6>Project End</h6>
+						</div>
+						<div class="large-1 columns">
+							:
+						</div>
+						<div class="large-7 columns">
+							<?php echo $end;?>
+						</div>
+					</div>
+			</div>
+			
+			
+			<div class="row ">
+					<div class="large-12 columns">
+						&nbsp
+					</div>
+					<div class="large-12 columns">
 					<?php 
-					if ($pm && $status == 'N') echo anchor('project/getcloseproject/'.$pid,'Close Project');
+					if ($pm && $status == 'N') echo anchor('project/getcloseproject/'.$pid,'<center><button class="alert">Close Project</button><center>');
 					?>
-
-			</div>
-			<div class="row">
-			<div class="large-3 columns ">
-				<?php  echo 'Project Detail';?>
-			</div>
-			<div class="large-9 columns">
-				<?php echo $detail;?>
-			</div>
+					</div>
+					
 			</div>
 			
-			<div class="row">
-			<div class="large-3 columns">
-				<?php  echo 'Project Start';?>
-			</div>
-			<div class="large-9 columns">
-				<?php echo $start;?>
-			</div>
-			</div>
-			
-			<div class="row">
-			<div class="large-3 columns">
-				<?php  echo 'Project End';?>
-			</div>
-			<div class="large-9 columns">
-				<?php echo $end;?>
-			</div>
-			</div>
 		
 		</div>
 

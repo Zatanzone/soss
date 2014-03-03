@@ -12,7 +12,8 @@
 <body>
 
 <center>
-<div class = "signin-box">
+<div class="large-5 columns signin-box">
+
 <h1>Administration</h1>
 <h6 style="color: red;"><?php echo $this->session->flashdata('signin'); ?></h6>
 <?php echo form_open('form/admin'); ?>
@@ -29,6 +30,7 @@
 <div class="forgot"><a href="#">Forgot your password?</a></div>
 
 </form>
+
 </div>
 </center>
 </body>

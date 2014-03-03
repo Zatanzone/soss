@@ -27,18 +27,19 @@
 				</div>
 				<p>Stay connected to our social</p>
 
-				<span><a href="#" onmouseover="changeicon(f)"><img
+				<span><a href="https://www.facebook.com/pages/Soss/617066458383496" onmouseover="changeicon(f)"><img
 						src="images/icon-social/facebook-a.png" width="32" height="32"
 						border="0" alt=""></a></span> 
-				<span><a href="#"
+				<!--   <span><a href="#"
 					onmouseover="changeicon(s)"><img
 						src="images/icon-social/skype-a.png" width="32" height="32"
 						border="0" alt=""></a></span> 
 				<span><a href="#"
 					onmouseover="changeicon(g)"><img
 						src="images/icon-social/google-a.png" width="32" height="32"
-						border="0" alt=""></a></span> 
-				<span><a href="#"
+						border="0" alt=""></a></span>
+				--> 
+				<span><a href="http://www.youtube.com/watch?feature=player_embedded&v=viP7WLaFC8E"
 					onmouseover="changeicon(y)"><img
 						src="images/icon-social/youtube-a.png" width="32" height="32"
 						border="0" alt=""></a></span>
@@ -64,7 +65,7 @@
 	<nav class="top-bar">
 		<div class="row">
 				<div class="Menu-bottom bottom-bar">
-					<center><a href="">Sitemap</a></center>
+					<!--   <center><a href="">Sitemap</a></center>-->
 				</div>
 		</div>
 	</nav>

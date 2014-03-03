@@ -1,4 +1,3 @@
-
 			<!DOCTYPE html>
 <!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -22,10 +21,7 @@
           </h1>	  
 		</li>
 	 </nav>
-	 <!--icon-button & text search -->
-	 <div class="search-box hide-for-small"><input type="text" id="" name="" placeholder="search"></div>
-	 <div class="search-icon hide-for-small"><img src="<?php echo base_url();?>images/search-32.png" width="32" height="32" border="0" alt=""></div>
-	 <!--icon-button & text search -->
+	 
 
 	 <!-- Menu Bar Large Resolution -->
 	 <!-- Menu Small Resolution -->

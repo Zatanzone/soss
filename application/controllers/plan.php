@@ -91,10 +91,10 @@ class Plan extends CI_Controller
 				'RES'=>$_POST['member']
 			);
 			$success = $this->Plan_model->save($data);
-			if ($success) {
+
+			if ($success)
 				redirect('plan/index/'.$_POST['pid'],'refesh');
 			//	$this->index($_POST['pid']);
-			}
 		}
 	}
 	public function savedoc(){

@@ -22,10 +22,7 @@
 		</div>
 		<p><a href="#" onclick="showNotifications()" class="small secondary button notifications">Notifications</a></p>
 	 </nav>
-	 <!--icon-button & text search -->
-	 <div class="search-box hide-for-small"><input type="text" id="" name="" placeholder="search"></div>
-	 <div class="search-icon hide-for-small"><img src="img/search-32.png" width="32" height="32" border="0" alt=""></div>
-	 <!--icon-button & text search -->
+	 
 
 	 <!-- Menu Bar Large Resolution -->
 	 <!-- Menu Small Resolution -->

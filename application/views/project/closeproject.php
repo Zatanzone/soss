@@ -22,7 +22,7 @@
 						<div class="large-3 columns"> <?php echo 'Finished  : '.$docfinished;?></div>
 						<div class="large-3 columns"> <?php echo 'None-Finish : '.$docnonFinished;?></div>
 			</div>
-			
+			<hr />
 			<div class="large-12 columns">
 						<div style="float: right;">
 						<?php echo form_open('project/confirmclose')?>

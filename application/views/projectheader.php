@@ -19,11 +19,11 @@
       
         <li class="name">
           <h1>
-          <?php if ("" == $this->session->userdata('user_id')){?>
-           <a href="<?php echo base_url();?>index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
-          <?php }else {?>
-          <a href="<?php echo base_url();?>main/index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
-          <?php }?>
+            <?php if ("" == $this->session->userdata('user_id')){?>
+            <a href="<?php echo base_url();?>index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+           <?php }else {?>
+           <a href="<?php echo base_url();?>main/index"><img src="<?php echo base_url();?>images/sos_logo_tran.png" width="120" height="40" border="0" alt=""></a>
+           <?php }?>
           </h1>	  
 		</li>
 		<div class="icon-profile" >
@@ -31,10 +31,7 @@
 		</div>
 		
 	 </nav>
-	 <!--icon-button & text search -->
-	 <div class="search-box hide-for-small"><input type="text" id="" name="" placeholder="search"></div>
-	 <div class="search-icon hide-for-small"><img src="<?php echo base_url();?>images/search-32.png" width="32" height="32" border="0" alt=""></div>
-	 <!--icon-button & text search -->
+	
 
 	 <!-- Menu Bar Large Resolution -->
 	 <!-- Menu Small Resolution -->

@@ -110,5 +110,85 @@
 			}?>
 		</tbody>
 		</table>
+		
+		<h5>Color Detail</h5>
+		
+		<div class="row">
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6 style="color:green;">Green</h6>
+			</div>
+			<div class="large-7 columns">
+				100%
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6 style="color:yellow;">Yellow</h6>
+			</div>
+			<div class="large-7 columns">
+				76-99%
+			</div>
+		</div>
+		<div class="row">	
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6 style="color:#FF8000;">Orange</h6>
+			</div>
+			<div class="large-7 columns">
+				51-75%
+			</div>
+		</div>
+		<div class="row">	
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6 style="color:red;">Red</h6>
+			</div>
+			<div class="large-7 columns">
+				26-50%
+			</div>
+		</div>
+		<div class="row">	
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6 style="color:#8A0868;">Puple</h6>
+			</div>
+			<div class="large-7 columns">
+				1-25%
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6>Black</h6>
+			</div>
+			<div class="large-7 columns">
+				0%
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 columns">
+				&nbsp
+			</div>
+			<div class="large-3 columns">
+				<h6 style="color:grey;">Grey</h6>
+			</div>
+			<div class="large-7 columns">
+				Weekend
+			</div>
+		</div>
 	</div>
 </div>

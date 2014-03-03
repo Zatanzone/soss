@@ -102,7 +102,7 @@
 					<div>
 						<img src="images/member-logo.png" width="150" height="150"
 							border="0" alt="">
-							<h4><?php echo $this->db->count_all('tb_user');?></h4>
+							<div style="margin-top:-65px;margin-bottom:40px;"><h4><?php echo $this->db->count_all('tb_user');?></h4></div>
 					</div>
 					<div>
 						<h4>Member</h4>
@@ -114,7 +114,7 @@
 					<div>
 						<img src="images/project-logo.png" width="150" height="150"
 							border="0" alt="">
-							<h4><?php echo $countPJ?></h4>
+							<div style="margin-top:-65px;margin-bottom:40px;"><h4><?php echo $countPJ?></h4></div>
 					</div>
 					<div>
 						<h4>Project</h4>
@@ -126,7 +126,7 @@
 					<div>
 						<img src="images/success-logo.png" width="150" height="150"
 							border="0" alt="">
-							<h4><?php echo $countSess?></h4>
+							<div style="margin-top:-65px;margin-bottom:40px;"><h4><?php echo $countSess?></h4></div>
 					</div>
 					<div>
 						<h4>Success</h4>
